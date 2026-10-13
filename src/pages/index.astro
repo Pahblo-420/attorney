@@ -1,16 +1,1093 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import PracticeAreaCard from "../components/PracticeAreaCard.astro";
+// 1. Import the insights data
+import { insights } from "../data/insights";
+
+// 2. Define the date formatter function
+const formatArticleDate = (date: string) =>
+  new Intl.DateTimeFormat("en-ZA", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(`${date}T00:00:00Z`));
+
+// Reverted to original icons
+const practiceAreas = [
+  {
+    title: "Civil Litigation",
+    description: "Representation in civil disputes involving individuals, businesses and personal rights.",
+    href: "/practice-areas/civil-litigation",
+    icon: "M12 3v17 M5 20h14 M4 7h16 M6 7l-3 6h6L6 7Z M18 7l-3 6h6l-3-6Z",
+  },
+  {
+    title: "Contract Law",
+    description: "Legal guidance on contractual rights, obligations and disputes.",
+    href: "/practice-areas/contract-law",
+    icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Z M14 2v6h6 M8 12h8 M8 16h6",
+  },
+  {
+    title: "Divorce",
+    description: "Support and representation through contested and uncontested divorce proceedings.",
+    href: "/practice-areas/divorce",
+    icon: "M9 6a3 3 0 1 1-6 0a3 3 0 0 1 6 0Z M21 6a3 3 0 1 1-6 0a3 3 0 0 1 6 0Z M2 20v-3a4 4 0 0 1 8 0v3 M14 20v-3a4 4 0 0 1 8 0v3 M12 4v16",
+  },
+  {
+    title: "Labour Disputes",
+    description: "Assistance with disputes between employers and employees concerning employment matters.",
+    href: "/practice-areas/labour-disputes",
+    icon: "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2 M4 6h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z M2 12h20 M10 12v3h4v-3",
+  },
+  {
+    title: "Debt Collection",
+    description: "Assistance with recovering outstanding debts through appropriate legal processes.",
+    href: "/practice-areas/debt-collection",
+    icon: "M3 5h18v14H3V5Z M3 9h18 M7 15h3 M17 14v2 M16 15h2",
+  },
+  {
+    title: "Immigration Law",
+    description: "Advice on immigration rights and obligations, with representation in relevant proceedings.",
+    href: "/practice-areas/immigration-law",
+    icon: "M22 12a10 10 0 1 1-20 0a10 10 0 0 1 20 0Z M2 12h20 M12 2c3 3 4 6 4 10s-1 7-4 10c-3-3-4-6-4-10s1-7 4-10Z",
+  },
+  {
+    title: "Insolvency & Business Rescue",
+    description: "Legal guidance for financially distressed businesses exploring rescue and insolvency processes.",
+    href: "/practice-areas/insolvency-business-rescue",
+    icon: "M4 21V3h12v18 M16 9h4v12 M2 21h20 M8 7h4 M8 11h4 M8 15h4 M9 21v-3h2v3",
+  },
+  {
+    title: "Conveyancing & Property Law",
+    description: "Legal assistance with property purchases, transfers and related property matters.",
+    href: "/practice-areas/conveyancing-property-law",
+    icon: "M3 10l9-7 9 7 M5 9v12h14V9 M9 21v-8h6v8",
+  },
+  {
+    title: "Criminal Litigation & Bail Applications",
+    description: "Representation in criminal matters and 24-hour assistance with bail applications.",
+    href: "/practice-areas/criminal-litigation-bail",
+    icon: "M12 3l8 3v6c0 5-4 8-8 10-4-2-8-5-8-10V6l8-3Z M9 12l2 2 4-4",
+  },
+  {
+    title: "Deceased Estates",
+    description: "Professional assistance with administering a deceased estate and its related legal requirements.",
+    href: "/practice-areas/deceased-estates",
+    icon: "M4 4h16v17H4V4Z M8 4V2h8v2 M8 9h8 M8 13h8 M8 17h5",
+  },
+  {
+    title: "Wills",
+    description: "Assistance with preparing a will that clearly records your wishes for your estate.",
+    href: "/practice-areas/wills",
+    icon: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Z M14 2v6h6 M8 12h8 M8 17l2-2 2 2 4-3",
+  },
+  {
+    title: "Road Accident Fund Claims",
+    description: "Assistance with assessing and pursuing claims following road accident injuries or the loss of a loved one.",
+    href: "/practice-areas/road-accident-fund",
+    icon: "M5 10l2-6h10l2 6 M5 10h14a2 2 0 0 1 2 2v6H3v-6a2 2 0 0 1 2-2Z M5 18v3 M19 18v3 M7 14h2 M15 14h2",
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout 
+  title="Pahblo's Attorneys | Legal Support for Life and Business" 
+  description="From family and property matters to workplace disputes and litigation, we provide clear advice and dedicated representation to help you move forward."
+>
+  <Hero bailPhone="0800 123 4567" />
+
+  <section
+    id="practice-areas"
+    aria-labelledby="practice-areas-heading"
+    class="scroll-mt-28 bg-gradient-to-b from-ivory via-white to-white py-16 sm:py-20 lg:py-24"
+  >
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="mb-4 flex items-center gap-3">
+          <span
+            aria-hidden="true"
+            class="h-px w-10 shrink-0 bg-[#D4AF67]"
+          ></span>
+
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-navy">
+            How we can help
+          </p>
+        </div>
+
+        <h2
+          id="practice-areas-heading"
+          class="text-balance font-serif text-3xl leading-tight text-navy sm:text-4xl lg:text-5xl"
+        >
+          Our Practice Areas
+        </h2>
+
+        <p class="mt-5 max-w-2xl text-base leading-relaxed text-slate sm:text-lg">
+          Whether you are facing a personal legal matter or a business
+          challenge, explore our services to find the assistance you need.
+        </p>
+      </div>
+
+      <div class="mt-12 grid auto-rows-fr gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          practiceAreas.map(({ title, description, href, icon }, index) => (
+            // Cards from index 4 onwards are hidden on mobile (< 640px)
+            <div class:list={[
+              "h-full",
+              index >= 4 ? "hidden sm:block mobile-hidden-card" : ""
+            ]}>
+              <PracticeAreaCard
+                title={title}
+                description={description}
+                href={href}
+              >
+                <svg
+                  slot="icon"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path d={icon}></path>
+                </svg>
+              </PracticeAreaCard>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Mobile 'See More' Button Container -->
+      <div class="mt-8 flex justify-center sm:hidden" id="see-more-container">
+        <button 
+          id="see-more-btn"
+          type="button" 
+          class="inline-flex min-h-12 w-full items-center justify-center rounded-sm border border-stone bg-white px-6 py-3 text-sm font-semibold text-navy shadow-sm transition-colors hover:bg-stone/10 active:bg-stone/20"
+        >
+          See all practice areas
+          <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="mt-16 flex flex-col gap-5 border-t border-stone pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h3 class="font-serif text-xl font-semibold text-navy">
+            Unsure which service you need?
+          </h3>
+
+          <p class="mt-2 text-sm leading-relaxed text-slate">
+            Get in touch with a brief outline of your matter.
+          </p>
+        </div>
+
+        <a
+          href="/contact#consultation"
+          class="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-sm bg-navy px-6 py-3 text-sm font-semibold text-white transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-navy/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-4 motion-reduce:transform-none motion-reduce:transition-none"
+        >
+          Book a Consultation
+          <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section
+    aria-labelledby="about-firm-heading"
+    class="relative isolate overflow-hidden bg-gradient-to-b from-white to-stone-50/50 pt-8 pb-12 sm:pt-12 sm:pb-16 lg:pt-16 lg:pb-20"
+  >
+    <!-- Decorative background glow -->
+    <div class="absolute -top-24 right-0 -z-10 h-[500px] w-[500px] translate-x-1/3 rounded-full bg-stone-200/40 blur-[100px] sm:translate-x-1/4"></div>
+
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        
+        <!-- Introduction: Text Content -->
+        <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 ease-out lg:col-start-2 lg:row-start-1" style="transition-delay: 200ms;">
+          <div class="mb-5 flex items-center gap-3">
+            <span
+              aria-hidden="true"
+              class="h-px w-10 shrink-0 bg-[#D4AF67]"
+            ></span>
+
+            <p
+              class="text-xs font-semibold uppercase tracking-[0.2em] text-navy"
+            >
+              About Pahblo’s Attorneys
+            </p>
+          </div>
+
+          <h2
+            id="about-firm-heading"
+            class="max-w-xl text-balance font-serif text-3xl leading-tight text-navy sm:text-4xl lg:text-5xl"
+          >
+            Personal attention.
+            <span class="mt-1 block text-[#D4AF67]">Clear legal guidance.</span>
+          </h2>
+
+          <div class="mt-8 space-y-5">
+            <p class="max-w-xl text-base leading-relaxed text-slate sm:text-lg">
+              Based in Phuthaditjhaba, QwaQwa, Pahblo’s Attorneys welcomes individuals,
+               families and businesses seeking legal advice and representation.
+               Whether you need guidance on a personal matter or support with a 
+               business dispute, we take time to understand your circumstances and explain your options.
+            </p>
+
+            <p class="max-w-xl text-base leading-relaxed text-slate sm:text-lg">
+              Our approach centres on clear, respectful communication. 
+              We explain legal processes in plain language, keep you informed 
+              as your matter progresses and discuss the proposed scope of work, fees and next steps. 
+              You can expect professional service, careful attention to your concerns and practical guidance throughout your matter.
+            </p>
+          </div>
+
+          <a
+            href="/about"
+            class="group mt-10 inline-flex min-h-12 items-center justify-center gap-2 rounded-sm bg-navy px-7 py-3 text-sm font-semibold text-white shadow-md transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-navy/90 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-4 focus-visible:ring-offset-white motion-reduce:transform-none"
+          >
+            About Our Firm
+
+            <svg
+              aria-hidden="true"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="transition-transform duration-300 group-hover:translate-x-1"
+            >
+              <path d="M5 12h14m-6-6 6 6-6 6"></path>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Photograph: Image Content -->
+        <!-- Added 'group' and pure tailwind data states for mobile hover -->
+        <div class="reveal-on-scroll about-image-wrapper group relative mx-auto w-full max-w-md opacity-0 translate-y-8 transition-all duration-1000 ease-out lg:col-start-1 lg:row-start-1 lg:mx-0 lg:max-w-lg">
+          
+          <!-- Filled Background Frame: Changed rounded-sm to rounded-2xl -->
+          <div
+            aria-hidden="true"
+            class="absolute -bottom-4 -right-4 h-full w-full rounded-2xl bg-[#D4AF67]/15 border border-[#D4AF67]/30 transition-transform duration-700 ease-out group-hover:translate-x-2 group-hover:translate-y-2 max-sm:group-data-[active=true]:translate-x-2 max-sm:group-data-[active=true]:translate-y-2 sm:-bottom-6 sm:-right-6"
+          ></div>
+
+          <!-- Image Container: Changed rounded-sm to rounded-2xl -->
+          <div class="relative z-10 overflow-hidden rounded-2xl shadow-2xl shadow-navy/30">
+            <!-- Changed aspect-[4/3] to aspect-[4/5] (taller) and added object-top -->
+            <img
+              src="/images/about-firm.webp"
+              alt="Pahblo’s Attorneys founder"
+              width="960"
+              height="1000"
+              loading="lazy"
+              decoding="async"
+              class="aspect-[4/5] w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105 max-sm:group-data-[active=true]:scale-105 lg:aspect-[4/5]"
+            />
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <section
+  aria-labelledby="client-care-heading"
+  class="relative isolate overflow-hidden bg-navy py-16 sm:py-20 lg:py-24"
+>
+  <!-- Subtle golden background glow for depth -->
+  <div class="absolute left-1/2 top-0 -z-10 h-[600px] w-[800px] -translate-x-1/2 rounded-full bg-[#D4AF67]/5 blur-[120px]"></div>
+
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section introduction -->
+    <div class="reveal-on-scroll mx-auto max-w-2xl text-center opacity-0 translate-y-8 transition-all duration-1000 ease-out">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#E8CA90]">
+        Our Approach to Client Care
+      </p>
+
+      <span
+        aria-hidden="true"
+        class="mx-auto mt-5 block h-px w-12 bg-[#D4AF67]"
+      ></span>
+
+      <h2
+        id="client-care-heading"
+        class="mt-6 text-balance font-serif text-3xl leading-tight text-white sm:text-4xl lg:text-5xl"
+      >
+        Clear guidance at every step.
+      </h2>
+
+      <p class="mt-6 text-base leading-relaxed text-white/80 sm:text-lg">
+        Seeking legal assistance can feel overwhelming. Our approach
+        helps you understand your options and what comes next.
+      </p>
+    </div>
+
+    <!-- Client-care commitments -->
+    <div class="mt-16 grid gap-6 lg:grid-cols-3 lg:gap-8">
+      
+      <!-- Clear communication -->
+      <!-- Clear communication -->
+      <!-- Added a custom 'mobile-interactive' class for the JS to target, and pure Tailwind mobile hover states -->
+      <article class="reveal-on-scroll mobile-interactive group rounded-lg border border-white/10 bg-white/5 p-8 backdrop-blur-sm opacity-0 translate-y-8 transition-all duration-700 ease-out hover:-translate-y-2 hover:border-[#D4AF67]/50 hover:bg-white/10 max-sm:group-data-[active=true]:-translate-y-2 max-sm:group-data-[active=true]:border-[#D4AF67]/50 max-sm:group-data-[active=true]:bg-white/10" style="transition-delay: 150ms;">
+        <div
+          aria-hidden="true"
+          class="mb-8 inline-flex h-14 w-14 items-center justify-center rounded-md bg-[#D4AF67]/10 transition-colors duration-500 group-hover:bg-[#D4AF67]/20 max-sm:group-data-[active=true]:bg-[#D4AF67]/20"
+        >
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E8CA90" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"></path>
+            <path d="M8 10h8M8 14h5"></path>
+          </svg>
+        </div>
+
+        <h3 class="font-serif text-2xl text-white">
+          Clear Communication
+        </h3>
+
+        <p class="mt-4 text-base leading-relaxed text-white/70 transition-colors duration-300 group-hover:text-white/90 max-sm:group-data-[active=true]:text-white/90">
+          We explain your options in plain language and keep you informed
+          as your matter progresses, with space to ask questions along
+          the way.
+        </p>
+      </article>
+
+      <!-- Personal attention -->
+      <article class="reveal-on-scroll mobile-interactive group rounded-lg border border-white/10 bg-white/5 p-8 backdrop-blur-sm opacity-0 translate-y-8 transition-all duration-700 ease-out hover:-translate-y-2 hover:border-[#D4AF67]/50 hover:bg-white/10 max-sm:group-data-[active=true]:-translate-y-2 max-sm:group-data-[active=true]:border-[#D4AF67]/50 max-sm:group-data-[active=true]:bg-white/10" style="transition-delay: 300ms;">
+        <div
+          aria-hidden="true"
+          class="mb-8 inline-flex h-14 w-14 items-center justify-center rounded-md bg-[#D4AF67]/10 transition-colors duration-500 group-hover:bg-[#D4AF67]/20 max-sm:group-data-[active=true]:bg-[#D4AF67]/20"
+        >
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E8CA90" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="7" r="4"></circle>
+            <path d="M4 21v-2a8 8 0 0 1 16 0v2"></path>
+          </svg>
+        </div>
+
+        <h3 class="font-serif text-2xl text-white">
+          Personal Attention
+        </h3>
+
+        <p class="mt-4 text-base leading-relaxed text-white/70 transition-colors duration-300 group-hover:text-white/90 max-sm:group-data-[active=true]:text-white/90">
+          We take time to understand your circumstances, listen to your
+          concerns and consider what matters to you when discussing
+          your legal options.
+        </p>
+      </article>
+
+      <!-- Transparent next steps -->
+      <article class="reveal-on-scroll mobile-interactive group rounded-lg border border-white/10 bg-white/5 p-8 backdrop-blur-sm opacity-0 translate-y-8 transition-all duration-700 ease-out hover:-translate-y-2 hover:border-[#D4AF67]/50 hover:bg-white/10 max-sm:group-data-[active=true]:-translate-y-2 max-sm:group-data-[active=true]:border-[#D4AF67]/50 max-sm:group-data-[active=true]:bg-white/10" style="transition-delay: 450ms;">
+        <div
+          aria-hidden="true"
+          class="mb-8 inline-flex h-14 w-14 items-center justify-center rounded-md bg-[#D4AF67]/10 transition-colors duration-500 group-hover:bg-[#D4AF67]/20 max-sm:group-data-[active=true]:bg-[#D4AF67]/20"
+        >
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E8CA90" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-3"></path>
+            <rect x="9" y="2" width="6" height="4" rx="1"></rect>
+            <path d="m8 13 2 2 6-6M8 18h8"></path>
+          </svg>
+        </div>
+
+        <h3 class="font-serif text-2xl text-white">
+          Transparent Next Steps
+        </h3>
+
+        <p class="mt-4 text-base leading-relaxed text-white/70 transition-colors duration-300 group-hover:text-white/90 max-sm:group-data-[active=true]:text-white/90">
+          We discuss the proposed approach, scope of work and fees so you
+          understand the next steps before deciding how to proceed.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+<section
+  aria-labelledby="attorneys-heading"
+  class="relative isolate overflow-hidden bg-stone-50 pt-20 pb-10 sm:pt-24 sm:pb-12 lg:pt-32 lg:pb-16"
+>
+  <!-- Decorative background glow for subtle texture -->
+  <div class="absolute left-0 top-1/2 -z-10 h-[500px] w-[500px] -translate-y-1/2 -translate-x-1/4 rounded-full bg-white blur-[100px]"></div>
+
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section introduction -->
+    <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+      <div class="reveal-on-scroll max-w-2xl opacity-0 translate-y-8 transition-all duration-1000 ease-out">
+        <div class="mb-5 flex items-center gap-3">
+          <span
+            aria-hidden="true"
+            class="h-px w-10 shrink-0 bg-[#D4AF67]"
+          ></span>
+
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-navy">
+            The People Behind the Firm
+          </p>
+        </div>
+
+        <h2
+          id="attorneys-heading"
+          class="text-balance font-serif text-3xl leading-tight text-navy sm:text-4xl lg:text-5xl"
+        >
+          Meet Our Attorneys
+        </h2>
+
+        <p class="mt-5 max-w-xl text-base leading-relaxed text-slate sm:text-lg">
+          Get to know the attorneys who assist our clients in
+          Phuthaditjhaba, QwaQwa, and beyond.
+        </p>
+      </div>
+
+      <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 200ms;">
+        <a
+          href="/our-attorneys"
+          class="group inline-flex min-h-12 shrink-0 items-center justify-center gap-2 self-start rounded-sm border border-navy/20 bg-white px-7 py-3 text-sm font-semibold text-navy shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-navy hover:bg-navy hover:text-white hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-4 focus-visible:ring-offset-stone-50 motion-reduce:transform-none"
+        >
+          Meet the Full Team
+          <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Attorney Cards Grid -->
+    <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {
+        [
+          {
+            name: "Paballo Lipopo",
+            role: "Director & Attorney",
+            qualification: "LLB · University of the Free State",
+            areas: "Civil Litigation · Contract Law · Labour Disputes",
+            introduction:
+              "Assists individuals and businesses with civil disputes, contractual matters and employment-related concerns.",
+            image: "/images/attorney-1.webp",
+            href: "/our-attorneys/attorney-one",
+          },
+          {
+            name: "Thandiwe Nkosi",
+            role: "Attorney",
+            qualification: "LLB · University of the Witwatersrand",
+            areas: "Divorce · Criminal Litigation · Bail Applications",
+            introduction:
+              "Supports clients through divorce proceedings and criminal matters, including applications for bail.",
+            image: "/images/attorney-2.webp",
+            href: "/our-attorneys/attorney-two",
+          },
+          {
+            name: "Tshepo Mokoena",
+            role: "Attorney",
+            qualification: "LLB · University of South Africa",
+            areas: "Property Law · Deceased Estates · Wills",
+            introduction:
+              "Assists clients with property-related matters, deceased estate administration and the preparation of wills.",
+            image: "/images/attorney-3.webp",
+            href: "/our-attorneys/attorney-three",
+          },
+        ].map(
+          ({
+            name,
+            role,
+            qualification,
+            areas,
+            introduction,
+            image,
+            href,
+          }) => (
+            <article class="reveal-on-scroll mobile-interactive group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-md opacity-0 translate-y-8 transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-xl max-sm:group-data-[active=true]:-translate-y-2 max-sm:group-data-[active=true]:shadow-xl">
+              
+              <!-- Image Container with Zoom Effect -->
+              <div class="relative overflow-hidden bg-navy/5">
+                <img
+                  src={image}
+                  alt={`Portrait of ${name}`}
+                  width="640"
+                  height="800"
+                  loading="lazy"
+                  decoding="async"
+                  class="aspect-[4/5] w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105 max-sm:group-data-[active=true]:scale-105"
+                />
+                <!-- Subtle inner shadow overlay -->
+                <div class="absolute inset-0 ring-1 ring-inset ring-black/5"></div>
+              </div>
+
+              <!-- Card Content -->
+              <div class="flex flex-1 flex-col p-8">
+                <p class="text-xs font-semibold uppercase tracking-widest text-[#D4AF67]">
+                  {role}
+                </p>
+
+                <h3 class="mt-3 font-serif text-2xl font-semibold text-navy transition-colors duration-300 group-hover:text-navy/80">
+                  <a
+                    href={href}
+                    class="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-4"
+                  >
+                    <!-- Expand clickable area to entire card -->
+                    <span class="absolute inset-0" aria-hidden="true"></span>
+                    {name}
+                  </a>
+                </h3>
+
+                <p class="mt-2 text-sm leading-relaxed text-slate">
+                  {qualification}
+                </p>
+
+                <div class="mt-6 border-t border-stone-100 pt-6">
+                  <p class="text-xs font-semibold uppercase tracking-wider text-navy">
+                    Practice Focus
+                  </p>
+                  <p class="mt-2 text-sm leading-relaxed text-slate">
+                    {areas}
+                  </p>
+                </div>
+
+                <p class="mt-4 text-sm leading-relaxed text-slate/80">
+                  {introduction}
+                </p>
+
+                <!-- Interactive Call to Action -->
+                <div class="mt-auto flex items-center pt-8 text-sm font-semibold text-navy transition-colors duration-300 group-hover:text-[#D4AF67] max-sm:group-data-[active=true]:text-[#D4AF67]">
+                  View Profile
+                  <svg 
+                    class="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5 max-sm:group-data-[active=true]:translate-x-1.5" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor" 
+                    stroke-width="2"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </div>
+            </article>
+          )
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<section
+  aria-labelledby="getting-started-heading"
+  class="relative isolate overflow-hidden bg-gradient-to-b from-stone-50 to-white pt-10 pb-12 sm:pt-12 sm:pb-16 lg:pt-16 lg:pb-20"
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section introduction -->
+    <div class="reveal-on-scroll mx-auto max-w-2xl text-center opacity-0 translate-y-8 transition-all duration-1000 ease-out">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-navy">
+        How to Get Started
+      </p>
+
+      <span
+        aria-hidden="true"
+        class="mx-auto mt-5 block h-px w-12 bg-[#D4AF67]"
+      ></span>
+
+      <h2
+        id="getting-started-heading"
+        class="mt-6 text-balance font-serif text-3xl leading-tight text-navy sm:text-4xl lg:text-5xl"
+      >
+        Your next step starts with a conversation.
+      </h2>
+
+      <p class="mt-6 text-base leading-relaxed text-slate sm:text-lg">
+        Tell us about your matter so we can help you arrange a consultation
+        and understand the way forward.
+      </p>
+    </div>
+
+    <!-- Ordered consultation process -->
+    <ol class="mt-16 grid gap-8 lg:grid-cols-3">
+      
+      <!-- Step 01 -->
+      <li class="reveal-on-scroll mobile-interactive group relative rounded-2xl border border-stone-100 bg-white p-8 shadow-md opacity-0 translate-y-8 transition-all duration-700 ease-out hover:-translate-y-2 hover:border-[#D4AF67]/50 hover:shadow-xl max-sm:group-data-[active=true]:-translate-y-2 max-sm:group-data-[active=true]:border-[#D4AF67]/50 max-sm:group-data-[active=true]:shadow-xl" style="transition-delay: 150ms;">
+        <span
+          aria-hidden="true"
+          class="mb-8 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-navy/5 font-serif text-3xl font-semibold text-navy transition-colors duration-500 group-hover:bg-navy group-hover:text-[#E8CA90] max-sm:group-data-[active=true]:bg-navy max-sm:group-data-[active=true]:text-[#E8CA90]"
+        >
+          01
+        </span>
+
+        <h3 class="font-serif text-2xl font-semibold text-navy transition-colors duration-300 group-hover:text-navy/80 max-sm:group-data-[active=true]:text-navy/80">
+          Get in Touch
+        </h3>
+
+        <p class="mt-4 text-base leading-relaxed text-slate">
+          Contact us by telephone, email or our enquiry form. Share your
+          contact details and a brief outline of your legal matter.
+        </p>
+      </li>
+
+      <!-- Step 02 -->
+      <li class="reveal-on-scroll mobile-interactive group relative rounded-2xl border border-stone-100 bg-white p-8 shadow-md opacity-0 translate-y-8 transition-all duration-700 ease-out hover:-translate-y-2 hover:border-[#D4AF67]/50 hover:shadow-xl max-sm:group-data-[active=true]:-translate-y-2 max-sm:group-data-[active=true]:border-[#D4AF67]/50 max-sm:group-data-[active=true]:shadow-xl" style="transition-delay: 300ms;">
+        <span
+          aria-hidden="true"
+          class="mb-8 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-navy/5 font-serif text-3xl font-semibold text-navy transition-colors duration-500 group-hover:bg-navy group-hover:text-[#E8CA90] max-sm:group-data-[active=true]:bg-navy max-sm:group-data-[active=true]:text-[#E8CA90]"
+        >
+          02
+        </span>
+
+        <h3 class="font-serif text-2xl font-semibold text-navy transition-colors duration-300 group-hover:text-navy/80 max-sm:group-data-[active=true]:text-navy/80">
+          Arrange a Consultation
+        </h3>
+
+        <p class="mt-4 text-base leading-relaxed text-slate">
+          We will confirm availability, a suitable appointment and any
+          consultation fee, along with the documents you should bring.
+        </p>
+      </li>
+
+      <!-- Step 03 -->
+      <li class="reveal-on-scroll mobile-interactive group relative rounded-2xl border border-stone-100 bg-white p-8 shadow-md opacity-0 translate-y-8 transition-all duration-700 ease-out hover:-translate-y-2 hover:border-[#D4AF67]/50 hover:shadow-xl max-sm:group-data-[active=true]:-translate-y-2 max-sm:group-data-[active=true]:border-[#D4AF67]/50 max-sm:group-data-[active=true]:shadow-xl" style="transition-delay: 450ms;">
+        <span
+          aria-hidden="true"
+          class="mb-8 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-navy/5 font-serif text-3xl font-semibold text-navy transition-colors duration-500 group-hover:bg-navy group-hover:text-[#E8CA90] max-sm:group-data-[active=true]:bg-navy max-sm:group-data-[active=true]:text-[#E8CA90]"
+        >
+          03
+        </span>
+
+        <h3 class="font-serif text-2xl font-semibold text-navy transition-colors duration-300 group-hover:text-navy/80 max-sm:group-data-[active=true]:text-navy/80">
+          Discuss Your Next Steps
+        </h3>
+
+        <p class="mt-4 text-base leading-relaxed text-slate">
+          Meet with an attorney to discuss your circumstances, available
+          options, the proposed scope of work and fees.
+        </p>
+      </li>
+
+    </ol>
+
+    <!-- Consultation action -->
+    <div class="reveal-on-scroll mt-16 text-center opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 600ms;">
+      <a
+        href="/contact#consultation"
+        class="group inline-flex min-h-12 items-center justify-center gap-2 rounded-sm bg-navy px-8 py-3 text-sm font-semibold text-white shadow-md transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-navy/90 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-4 focus-visible:ring-offset-white motion-reduce:transform-none"
+      >
+        Book a Consultation
+
+        <svg
+          aria-hidden="true"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="transition-transform duration-300 group-hover:translate-x-1"
+        >
+          <path d="M5 12h14m-6-6 6 6-6 6"></path>
+        </svg>
+      </a>
+
+      <p class="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-slate/80">
+        Sending an enquiry does not appoint the firm to act on your behalf.
+        Any engagement will be confirmed separately.
+      </p>
+    </div>
+    
+  </div>
+</section>
+<section
+  aria-labelledby="insights-heading"
+  class="relative isolate overflow-hidden bg-gradient-to-b from-white to-stone-50 pt-12 pb-20 sm:pt-16 sm:pb-24 lg:pt-20 lg:pb-32"
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+      
+      <div class="reveal-on-scroll max-w-2xl opacity-0 translate-y-8 transition-all duration-1000 ease-out">
+        <div class="mb-5 flex items-center gap-3">
+          <span
+            aria-hidden="true"
+            class="h-px w-10 bg-[#D4AF67]"
+          ></span>
+
+          <p
+            class="text-xs font-semibold uppercase tracking-[0.2em] text-navy"
+          >
+            Legal Insights
+          </p>
+        </div>
+
+        <h2
+          id="insights-heading"
+          class="font-serif text-3xl leading-tight text-navy sm:text-4xl lg:text-5xl"
+        >
+          Information for your next step.
+        </h2>
+
+        <p class="mt-5 text-base leading-relaxed text-slate sm:text-lg">
+          Explore practical introductions to common legal matters and
+          preparing for professional advice.
+        </p>
+      </div>
+
+      <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 200ms;">
+        <a
+          href="/insights"
+          class="group inline-flex min-h-12 shrink-0 items-center justify-center gap-2 self-start rounded-sm border border-navy/20 bg-white px-7 py-3 text-sm font-semibold text-navy shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-navy hover:bg-navy hover:text-white hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-4 focus-visible:ring-offset-stone-50 motion-reduce:transform-none"
+        >
+          View All Insights
+          <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {
+        insights.map((article) => (
+          <article class="reveal-on-scroll mobile-interactive group flex flex-col rounded-2xl bg-white p-8 shadow-md opacity-0 translate-y-8 transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-xl max-sm:group-data-[active=true]:-translate-y-2 max-sm:group-data-[active=true]:shadow-xl">
+            <p class="text-xs font-semibold uppercase tracking-wider text-[#D4AF67]">
+              {article.category}
+            </p>
+
+            <h3 class="mt-4 font-serif text-2xl leading-snug text-navy transition-colors duration-300 group-hover:text-navy/80">
+              <a
+                href={`/insights/${article.slug}`}
+                class="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-4"
+              >
+                <!-- Expand clickable area to entire card -->
+                <span class="absolute inset-0" aria-hidden="true"></span>
+                {article.title}
+              </a>
+            </h3>
+
+            <time
+              datetime={article.date}
+              class="mt-3 text-xs text-slate"
+            >
+              {formatArticleDate(article.date)}
+            </time>
+
+            <p class="mt-4 text-sm leading-relaxed text-slate">
+              {article.summary}
+            </p>
+
+            <div class="mt-auto flex items-center pt-8 text-sm font-semibold text-navy transition-colors duration-300 group-hover:text-[#D4AF67] max-sm:group-data-[active=true]:text-[#D4AF67]">
+              Read Article
+              <svg 
+                class="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5 max-sm:group-data-[active=true]:translate-x-1.5" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor" 
+                stroke-width="2"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+<section
+  aria-labelledby="faq-heading"
+  class="relative isolate overflow-hidden bg-stone-50 pt-8 pb-20 sm:pt-12 sm:pb-24 lg:pt-16 lg:pb-32"
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1.5fr] lg:gap-20">
+      
+      <!-- Introduction -->
+      <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 ease-out">
+        <div class="mb-5 flex items-center gap-3">
+          <span
+            aria-hidden="true"
+            class="h-px w-10 shrink-0 bg-[#D4AF67]"
+          ></span>
+
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-navy">
+            Frequently Asked Questions
+          </p>
+        </div>
+
+        <h2
+          id="faq-heading"
+          class="text-balance font-serif text-3xl leading-tight text-navy sm:text-4xl lg:text-5xl"
+        >
+          Before you get in touch.
+        </h2>
+
+        <p class="mt-6 text-base leading-relaxed text-slate sm:text-lg">
+          Find answers to common questions about arranging a consultation
+          with Pahblo’s Attorneys.
+        </p>
+
+        <a
+          href="/contact#consultation"
+          class="group mt-8 inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-sm border border-navy/20 bg-white px-7 py-3 text-sm font-semibold text-navy shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-navy hover:bg-navy hover:text-white hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-4 focus-visible:ring-offset-stone-50 motion-reduce:transform-none"
+        >
+          Ask us a question
+          <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+
+      <!-- Premium HTML accordion -->
+      <div class="space-y-4">
+        {
+          [
+            {
+              question: "How do I book a consultation?",
+              answer:
+                "Use our contact form or contact the firm by telephone or email. Share your contact details and a brief outline of your matter. An appointment is confirmed once the firm has agreed a date and time with you.",
+            },
+            {
+              question: "Is there a consultation fee?",
+              answer:
+                "Yes, our standard initial consultation fee is R750. Please contact the firm if you have any questions regarding what the consultation includes and how any further legal work would be charged.",
+            },
+            {
+              question: "What should I bring to my first appointment?",
+              answer:
+                "Ask us which documents are relevant to your matter. These may include agreements, correspondence, court documents or payment records. A short timeline of events and a list of your questions can also help. Mention any notices, deadlines or upcoming court dates when arranging your appointment.",
+            },
+            {
+              question: "Do you offer remote consultations?",
+              answer:
+                "Contact the firm to ask whether a telephone or online consultation is available and suitable for your matter. We will confirm the arrangements when scheduling your appointment.",
+            },
+            {
+              question: "How do I get urgent bail assistance?",
+              answer:
+                "The firm offers 24-hour assistance with bail applications. Call the dedicated bail assistance number listed on our Contact page. For urgent assistance, telephone the firm rather than relying on the website enquiry form.",
+            },
+          ].map(({ question, answer }, index) => {
+            const delay = index * 100;
+            return (
+              <details 
+                class="reveal-on-scroll group rounded-xl border border-stone-100 bg-white shadow-sm opacity-0 translate-y-8 transition-all duration-700 ease-out hover:border-[#D4AF67]/50 hover:shadow-md open:border-[#D4AF67]/50 open:shadow-md"
+                style={`transition-delay: ${delay}ms;`}
+              >
+                <!-- Added [&::-webkit-details-marker]:hidden here -->
+                <summary class="flex min-h-16 cursor-pointer list-none [&::-webkit-details-marker]:hidden items-center justify-between gap-4 rounded-xl px-6 py-5 text-left font-semibold text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 motion-reduce:transition-none">
+                  <span class="pr-4">{question}</span>
+
+                  <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-navy/5 text-[#D4AF67] transition-colors group-hover:bg-[#D4AF67]/10 group-open:bg-navy group-open:text-white">
+                    <svg
+                      aria-hidden="true"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    >
+                      <path d="M5 12h14"></path>
+                      <path
+                        d="M12 5v14"
+                        class="group-open:hidden"
+                      ></path>
+                    </svg>
+                  </div>
+                </summary>
+
+                <div class="px-6 pb-6 pt-2">
+                  <p class="text-sm leading-relaxed text-slate sm:text-base">
+                    {answer}
+                  </p>
+                </div>
+              </details>
+            )
+          })
+        }
+      </div>
+    </div>
+  </div>
+</section>
+<section
+  aria-labelledby="consultation-cta-heading"
+  class="relative isolate overflow-hidden bg-navy py-20 sm:py-24 lg:py-32"
+>
+  <!-- Subtle background glow for depth -->
+  <div class="absolute right-0 top-0 -z-10 h-[600px] w-[600px] -translate-y-1/4 translate-x-1/4 rounded-full bg-[#D4AF67]/10 blur-[120px]"></div>
+
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
+      
+      <!-- CTA Text Content -->
+      <div class="reveal-on-scroll max-w-2xl opacity-0 translate-y-8 transition-all duration-1000 ease-out">
+        <div class="mb-5 flex items-center gap-3">
+          <span
+            aria-hidden="true"
+            class="h-px w-10 shrink-0 bg-[#D4AF67]"
+          ></span>
+
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#E8CA90]">
+            Take the Next Step
+          </p>
+        </div>
+
+        <h2
+          id="consultation-cta-heading"
+          class="text-balance font-serif text-3xl leading-tight text-white sm:text-4xl lg:text-5xl"
+        >
+          Let’s discuss your legal matter.
+        </h2>
+
+        <p class="mt-6 text-base leading-relaxed text-white/80 sm:text-lg">
+          Contact Pahblo’s Attorneys in Phuthaditjhaba, QwaQwa, to
+          arrange a consultation and discuss your next steps.
+        </p>
+      </div>
+
+      <!-- CTA Action Buttons -->
+      <div class="reveal-on-scroll flex shrink-0 flex-col gap-5 opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 200ms;">
+        <a
+          href="/contact#consultation"
+          class="group inline-flex min-h-12 items-center justify-center gap-2 rounded-sm bg-[#D4AF67] px-8 py-4 text-sm font-semibold text-navy shadow-md transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-[#E8CA90] hover:shadow-xl hover:shadow-[#D4AF67]/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-navy motion-reduce:transform-none"
+        >
+          Book a Consultation
+
+          <svg
+            aria-hidden="true"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="transition-transform duration-300 group-hover:translate-x-1"
+          >
+            <path d="M5 12h14m-6-6 6 6-6 6"></path>
+          </svg>
+        </a>
+
+        <a
+          href="/contact"
+          class="group inline-flex min-h-11 items-center justify-center gap-2 rounded-sm text-sm font-semibold text-white/80 transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-navy"
+        >
+          View Our Contact Details
+          <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Urgent assistance (Upgraded with Direct Action) -->
+    <div class="reveal-on-scroll mt-16 flex flex-col gap-6 rounded-2xl border border-amber-400/30 bg-amber-400/5 p-6 backdrop-blur-sm opacity-0 translate-y-8 transition-all duration-1000 ease-out sm:flex-row sm:items-center sm:justify-between sm:p-8" style="transition-delay: 400ms;">
+      <div class="flex items-start gap-4 sm:items-center">
+        <!-- Alert Icon -->
+        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-amber-400/20 text-amber-400">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+        </div>
+        
+        <div>
+          <h3 class="font-serif text-lg font-semibold text-white">
+            Need urgent bail assistance?
+          </h3>
+          <p class="mt-1 text-sm leading-relaxed text-white/80">
+            For 24-hour assistance, call us immediately at <a href="tel:08001234567" class="font-bold tracking-wide text-amber-400 transition-colors hover:text-amber-300">0800 123 4567</a>.
+          </p>
+        </div>
+      </div>
+
+      <a
+        href="tel:08001234567"
+        class="group inline-flex min-h-11 shrink-0 items-center justify-center gap-2 self-start rounded-sm bg-amber-400 px-6 py-2 text-sm font-semibold text-navy transition-all duration-300 hover:bg-amber-300 hover:shadow-lg hover:shadow-amber-400/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-navy sm:self-center"
+      >
+        Call Now
+        <svg
+          aria-hidden="true"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="transition-transform duration-300 group-hover:translate-x-1"
+        >
+          <path d="M5 12h14m-6-6 6 6-6 6"></path>
+        </svg>
+      </a>
+    </div>
+    
+  </div>
+</section>
+</BaseLayout>
+
+<script>
+  // 1. Setup Intersection Observer for scroll entrance animations (Slide up & fade in)
+  const revealOptions = {
+    root: null,
+    rootMargin: "0px 0px -50px 0px",
+    threshold: 0.1,
+  };
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove("opacity-0", "translate-y-8");
+        entry.target.classList.add("opacity-100", "translate-y-0");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, revealOptions);
+
+  // 2. Setup Observer for Mobile Scroll "Hover" Simulation
+  const mobileHoverOptions = {
+    root: null,
+    rootMargin: "-40% 0px -40% 0px", 
+    threshold: 0,
+  };
+
+  const mobileHoverObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Toggles a pure HTML data attribute instead of a CSS class!
+        entry.target.setAttribute("data-active", "true");
+      } else {
+        entry.target.removeAttribute("data-active");
+      }
+    });
+  }, mobileHoverOptions);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // 3. Observe all cards and the about image
+    const cards = document.querySelectorAll(".reveal-on-scroll");
+    cards.forEach((card, index) => {
+      // Only apply dynamic delay if a manual transition-delay wasn't set in the HTML inline styles
+      if (!(card as HTMLElement).style.transitionDelay) {
+        const delay = (index % 3) * 150; 
+        (card as HTMLElement).style.transitionDelay = `${delay}ms`;
+      }
+      
+      revealObserver.observe(card);
+      
+      // Apply the mobile hover observer so the elements pop when scrolled into center
+      if (
+        card.classList.contains('about-image-wrapper') || 
+        card.classList.contains('practice-card') || 
+        card.classList.contains('mobile-interactive')
+      ) {
+         mobileHoverObserver.observe(card);
+      }
+    });
+
+    // 4. Handle Mobile 'See More' Toggle
+    const seeMoreBtn = document.getElementById("see-more-btn");
+    const seeMoreContainer = document.getElementById("see-more-container");
+    const hiddenCards = document.querySelectorAll(".mobile-hidden-card");
+
+    if (seeMoreBtn && seeMoreContainer) {
+      seeMoreBtn.addEventListener("click", () => {
+        hiddenCards.forEach(card => card.classList.remove("hidden"));
+        seeMoreContainer.style.display = "none";
+      });
+    }
+  });
+</script>

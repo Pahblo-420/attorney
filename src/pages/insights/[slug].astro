@@ -1,0 +1,113 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { insights } from "../../data/insights";
+
+export function getStaticPaths() {
+  return insights.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+interface Props {
+  article: (typeof insights)[number];
+}
+
+const { article } = Astro.props;
+
+const formattedDate = new Intl.DateTimeFormat("en-ZA", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+}).format(new Date(`${article.date}T00:00:00Z`));
+---
+
+<BaseLayout 
+  title={`${article.title} | Pahblo's Attorneys`} 
+  description={article.summary}
+>
+  <article class="bg-stone-50 pb-20 pt-32 sm:pt-36">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6">
+      <a
+        href="/insights"
+        class="inline-flex min-h-11 items-center gap-2 rounded-sm text-sm font-semibold text-navy underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-4"
+      >
+        <span aria-hidden="true">←</span>
+        All Insights
+      </a>
+
+      <header class="mt-8 border-b border-stone-200 pb-8">
+        <p class="text-xs font-semibold uppercase tracking-widest text-[#D4AF67]">
+          {article.category}
+        </p>
+
+        <h1 class="mt-4 text-balance font-serif text-4xl leading-tight text-navy sm:text-5xl">
+          {article.title}
+        </h1>
+
+        <time datetime={article.date} class="mt-5 block text-sm text-slate">
+          {formattedDate}
+        </time>
+
+        <p class="mt-6 text-lg leading-relaxed text-slate">
+          {article.summary}
+        </p>
+      </header>
+
+      <div class="mt-10 space-y-10">
+        {
+          article.sections.map(({ heading, paragraphs }) => (
+            <section>
+              <h2 class="font-serif text-2xl text-navy sm:text-3xl">
+                {heading}
+              </h2>
+
+              <div class="mt-4 space-y-4">
+                {paragraphs.map((paragraph) => (
+                  <p class="text-base leading-8 text-slate">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            </section>
+          ))
+        }
+      </div>
+
+      {
+        article.sources.length > 0 && (
+          <aside aria-label="Article references" class="mt-10 border-t border-stone-200 pt-6">
+            <h2 class="font-serif text-xl text-navy">Further Reading</h2>
+            <ul class="mt-4 space-y-3">
+              {article.sources.map(({ label, href }) => (
+                <li>
+                  <a href={href} class="rounded-sm text-sm text-[#D4AF67] underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-4">
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        )
+      }
+
+      <p class="mt-10 border-t border-stone-200 pt-6 text-sm leading-relaxed text-slate">
+        This article provides general information and does not replace advice on your particular circumstances.
+      </p>
+
+      <div class="mt-12 rounded-2xl bg-navy p-8 text-white shadow-xl sm:p-10">
+        <h2 class="font-serif text-2xl">Have a question about your matter?</h2>
+        <p class="mt-3 leading-relaxed text-white/90">
+          Contact Pahblo’s Attorneys in Phuthaditjhaba, QwaQwa, to arrange a consultation.
+        </p>
+        <a
+          href="/contact#consultation"
+          class="mt-6 inline-flex min-h-12 items-center justify-center rounded-sm bg-[#D4AF67] px-6 py-3 text-sm font-semibold text-navy transition duration-200 hover:-translate-y-0.5 hover:bg-[#E8CA90] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-navy motion-reduce:transform-none"
+        >
+          Book a Consultation
+        </a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
