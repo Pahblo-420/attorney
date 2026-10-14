@@ -2,50 +2,225 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { insights } from "../../data/insights";
 
-const formatArticleDate = (date: string) =>
+const formatDate = (date: string) =>
   new Intl.DateTimeFormat("en-ZA", {
     day: "numeric",
     month: "long",
     year: "numeric",
     timeZone: "UTC",
   }).format(new Date(`${date}T00:00:00Z`));
+
+const faqGroups = [
+  {
+    title: "Arranging a Consultation",
+    questions: [
+      {
+        question: "How do I book a consultation?",
+        answer:
+          "Contact the firm by telephone, email or the enquiry form. Share your contact details and a brief outline of your matter. Your appointment is confirmed once we have agreed a date and time with you.",
+      },
+      {
+        question: "Is there a consultation fee?",
+        answer:
+          "Please confirm the applicable fee before your appointment. You can also ask what the consultation includes and how any further work would be charged.",
+      },
+      {
+        question: "What should I bring to my appointment?",
+        answer:
+          "Ask which documents are relevant to your matter. These may include agreements, correspondence, court documents or payment records. Prepare a short timeline and your questions, and mention any deadlines when arranging the consultation.",
+      },
+      {
+        question: "Can I arrange a remote consultation?",
+        answer:
+          "Contact the firm to ask whether a telephone or online consultation is available and suitable for your matter. The arrangements will be confirmed when scheduling your appointment.",
+      },
+    ],
+  },
+  {
+    title: "Working With the Firm",
+    questions: [
+      {
+        question: "Which legal matters does the firm handle?",
+        answer:
+          "Our practice areas include civil litigation, contract law, divorce, labour disputes, debt collection, immigration, insolvency and business rescue, property matters, criminal litigation and bail applications, deceased estates, wills and Road Accident Fund claims. Contact us if you are unsure which service fits your circumstances.",
+      },
+      {
+        question: "Does sending an enquiry appoint the firm?",
+        answer:
+          "No. Sending an enquiry does not appoint the firm to act on your behalf. Any engagement, scope of work and fees will be confirmed separately.",
+      },
+      {
+        question: "How will I receive updates?",
+        answer:
+          "Discuss communication arrangements with the attorney handling your matter. Confirm your preferred contact details and ask how progress updates and requests for information will be shared.",
+      },
+      {
+        question: "Should I upload confidential documents through the website?",
+        answer:
+          "Use the enquiry form for a brief description of your matter. Avoid sending detailed confidential information or sensitive documents until the firm has confirmed an appropriate way to provide them.",
+      },
+    ],
+  },
+  {
+    title: "Urgent Assistance & Visiting",
+    questions: [
+      {
+        question: "How do I request urgent bail assistance?",
+        answer:
+          "Call the dedicated 24-hour bail assistance number on our Contact page. For urgent assistance, telephone the firm rather than relying on the website enquiry form.",
+      },
+      {
+        question: "Where is the firm based?",
+        answer:
+          "Pahblo’s Attorneys is based in Phuthaditjhaba, QwaQwa. Visit our Contact page for the office address and map, and confirm your appointment before travelling.",
+      },
+      {
+        question: "Can I visit without an appointment?",
+        answer:
+          "Please contact the firm before visiting to confirm availability and appointment arrangements. Let us know if you have accessibility requirements.",
+      },
+    ],
+  },
+];
 ---
 
 <BaseLayout 
-  title="Legal Insights | Pahblo's Attorneys" 
-  description="Explore practical introductions to common legal matters and prepare for professional advice in South Africa."
+  title="Legal Insights & FAQs | Pahblo’s Attorneys"
+  description="Explore legal insights and frequently asked questions about working with Pahblo's Attorneys in Phuthaditjhaba."
 >
-  <section class="bg-stone-50 pb-20 pt-32 sm:pb-24 sm:pt-40 lg:pb-32">
+  <!-- Premium Hero Section -->
+  <section
+    aria-labelledby="insights-page-heading"
+    class="relative isolate overflow-hidden bg-navy text-white pb-16 pt-32 sm:pb-20 sm:pt-40 lg:pb-24 lg:pt-44"
+  >
+    <!-- Subtle golden ambient glow -->
+    <div class="absolute right-0 top-0 -z-10 h-[500px] w-[500px] -translate-y-1/4 translate-x-1/4 rounded-full bg-[#D4AF67]/15 blur-[120px]"></div>
+    
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="max-w-2xl">
-        <div class="mb-5 flex items-center gap-3">
-          <span aria-hidden="true" class="h-px w-10 bg-[#D4AF67]"></span>
-          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-navy">Legal Insights</p>
+      <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 ease-out">
+        
+        <div class="max-w-3xl">
+          <div class="mb-5 flex items-center gap-3">
+            <span
+              aria-hidden="true"
+              class="h-px w-10 shrink-0 bg-[#D4AF67]"
+            ></span>
+
+            <p
+              class="text-xs font-semibold uppercase tracking-[0.2em] text-[#E8CA90]"
+            >
+              Information & Guidance
+            </p>
+          </div>
+
+          <h1
+            id="insights-page-heading"
+            class="text-balance font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl"
+          >
+            Legal Insights & Frequently Asked Questions
+          </h1>
+
+          <p
+            class="mt-6 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg"
+          >
+            Explore introductions to common legal matters and find answers
+            to questions about working with Pahblo’s Attorneys.
+          </p>
+
+          <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+            <a
+              href="#articles"
+              class="group inline-flex min-h-12 items-center justify-center gap-2 rounded-sm bg-[#D4AF67] px-8 py-3.5 text-sm font-semibold text-navy shadow-md transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-[#E8CA90] hover:shadow-xl hover:shadow-[#D4AF67]/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-navy motion-reduce:transform-none"
+            >
+              Explore Articles
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-x-1">
+                <path d="M5 12h14m-6-6 6 6-6 6"></path>
+              </svg>
+            </a>
+
+            <a
+              href="#faqs"
+              class="group inline-flex min-h-12 items-center justify-center gap-2 rounded-sm border border-white/20 bg-white/5 px-8 py-3.5 text-sm font-semibold text-white transition-all duration-300 ease-out hover:-translate-y-1 hover:border-white hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-navy motion-reduce:transform-none"
+            >
+              Browse FAQs
+            </a>
+          </div>
         </div>
-        <h1 class="font-serif text-4xl leading-tight text-navy sm:text-5xl lg:text-6xl">
-          Information for your next step.
-        </h1>
-        <p class="mt-6 text-base leading-relaxed text-slate sm:text-lg">
-          Explore practical introductions to common legal matters and preparing for professional advice.
+      </div>
+    </div>
+  </section>
+
+  <!-- Animated Article Collection -->
+  <section
+    id="articles"
+    aria-labelledby="articles-heading"
+    class="scroll-mt-28 bg-stone-50 py-16 sm:py-24 lg:py-32"
+  >
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="reveal-on-scroll max-w-2xl opacity-0 translate-y-8 transition-all duration-1000 ease-out">
+        <p
+          class="text-xs font-semibold uppercase tracking-[0.2em] text-[#D4AF67]"
+        >
+          From Our Insights
+        </p>
+
+        <h2
+          id="articles-heading"
+          class="mt-4 font-serif text-3xl leading-tight text-navy sm:text-4xl"
+        >
+          Understand your next step.
+        </h2>
+
+        <p class="mt-5 text-lg leading-relaxed text-slate">
+          Practical reading to help you prepare for a consultation
+          and ask informed questions.
         </p>
       </div>
 
-      <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {
-          insights.map((article) => (
-            <article class="group relative flex flex-col rounded-2xl bg-white p-8 shadow-md transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-xl">
-              <p class="text-xs font-semibold uppercase tracking-wider text-[#D4AF67]">{article.category}</p>
-              <h2 class="mt-4 font-serif text-2xl leading-snug text-navy transition-colors duration-300 group-hover:text-navy/80">
-                <a href={`/insights/${article.slug}`} class="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-4">
+          insights.map((article, index) => (
+            <article 
+              class="reveal-on-scroll group flex h-full flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white p-8 shadow-sm opacity-0 translate-y-8 transition-all duration-700 ease-out hover:-translate-y-2 hover:border-[#D4AF67]/40 hover:shadow-xl hover:shadow-navy/5"
+              style={`transition-delay: ${index * 150}ms;`}
+            >
+              <div class="flex items-center gap-3">
+                <span class="h-1.5 w-1.5 rounded-full bg-[#D4AF67]"></span>
+                <p class="text-xs font-semibold uppercase tracking-wider text-navy">
+                  {article.category}
+                </p>
+              </div>
+
+              <h3 class="mt-5 font-serif text-2xl leading-snug text-navy transition-colors duration-300 group-hover:text-[#D4AF67]">
+                <a
+                  href={`/insights/${article.slug}`}
+                  class="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-4"
+                >
                   <span class="absolute inset-0" aria-hidden="true"></span>
                   {article.title}
                 </a>
-              </h2>
-              <time datetime={article.date} class="mt-3 text-xs text-slate">{formatArticleDate(article.date)}</time>
-              <p class="mt-4 text-sm leading-relaxed text-slate">{article.summary}</p>
+              </h3>
+
+              <time
+                datetime={article.date}
+                class="mt-3 block text-xs font-medium text-slate/70"
+              >
+                {formatDate(article.date)}
+              </time>
+
+              <p class="mt-5 text-sm leading-relaxed text-slate">
+                {article.summary}
+              </p>
+
               <div class="mt-auto flex items-center pt-8 text-sm font-semibold text-navy transition-colors duration-300 group-hover:text-[#D4AF67]">
                 Read Article
-                <svg class="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <svg 
+                  class="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor" 
+                  stroke-width="2"
+                >
                   <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </div>
@@ -53,6 +228,182 @@ const formatArticleDate = (date: string) =>
           ))
         }
       </div>
+
+      <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 400ms;">
+        <p class="mt-12 max-w-3xl rounded-md bg-white p-5 text-sm leading-relaxed text-slate ring-1 ring-black/5 border-l-4 border-l-[#D4AF67]">
+          <strong>Disclaimer:</strong> These articles provide general information and do not replace formal legal advice on your particular circumstances.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Premium Grouped FAQs -->
+  <section
+    id="faqs"
+    aria-labelledby="faqs-heading"
+    class="scroll-mt-28 bg-white py-16 sm:py-24 lg:py-32"
+  >
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-12 lg:grid-cols-[1fr_1.5fr] lg:gap-20">
+        <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 ease-out">
+          <div class="mb-5 flex items-center gap-3">
+            <span
+              aria-hidden="true"
+              class="h-px w-10 shrink-0 bg-[#D4AF67]"
+            ></span>
+
+            <p
+              class="text-xs font-semibold uppercase tracking-[0.2em] text-navy"
+            >
+              Common Questions
+            </p>
+          </div>
+
+          <h2
+            id="faqs-heading"
+            class="font-serif text-3xl leading-tight text-navy sm:text-4xl"
+          >
+            Before you get in touch.
+          </h2>
+
+          <p class="mt-5 text-lg leading-relaxed text-slate">
+            Find information about consultations, communication and
+            visiting our office.
+          </p>
+
+          <a
+            href="/contact#consultation"
+            class="group mt-8 inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors hover:text-[#D4AF67] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-4"
+          >
+            Ask another question
+            <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+          </a>
+        </div>
+
+        <div class="space-y-12">
+          {
+            faqGroups.map(({ title, questions }, index) => (
+              <section 
+                aria-labelledby={`faq-group-${index}`}
+                class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 ease-out"
+                style={`transition-delay: ${index * 150}ms;`}
+              >
+                <h3
+                  id={`faq-group-${index}`}
+                  class="mb-6 font-serif text-2xl text-navy"
+                >
+                  {title}
+                </h3>
+
+                <div class="space-y-4">
+                  {questions.map(({ question, answer }) => (
+                    <details class="group rounded-xl border border-stone-200 bg-stone-50/50 transition-all duration-300 hover:border-[#D4AF67]/50 hover:bg-white hover:shadow-md open:border-[#D4AF67] open:bg-white open:shadow-md open:ring-1 open:ring-[#D4AF67]/20">
+                      <summary
+                        class="flex min-h-[4.5rem] cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-base font-semibold text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2 group-open:text-[#D4AF67]"
+                      >
+                        <span class="pr-4">{question}</span>
+
+                        <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-navy/5 text-navy transition-colors group-open:bg-[#D4AF67]/10 group-open:text-[#D4AF67]">
+                          <svg
+                            aria-hidden="true"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            class="transition-transform duration-300 group-open:rotate-180"
+                          >
+                            <path d="M5 12h14" />
+                            <path d="M12 5v14" class="group-open:hidden" />
+                          </svg>
+                        </div>
+                      </summary>
+
+                      <div class="px-6 pb-6 pt-2">
+                        <p class="text-base leading-relaxed text-slate">
+                          {answer}
+                        </p>
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              </section>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Premium Closing CTA -->
+  <section
+    aria-labelledby="insights-consultation-heading"
+    class="relative isolate overflow-hidden bg-navy py-16 text-white sm:py-24"
+  >
+    <!-- Subtle golden background glow -->
+    <div class="absolute right-0 top-1/2 -z-10 h-[400px] w-[400px] -translate-y-1/2 translate-x-1/4 rounded-full bg-[#D4AF67]/15 blur-[100px]"></div>
+
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div
+        class="reveal-on-scroll flex flex-col gap-8 opacity-0 translate-y-8 transition-all duration-1000 ease-out lg:flex-row lg:items-center lg:justify-between lg:gap-16"
+      >
+        <div class="max-w-2xl">
+          <h2
+            id="insights-consultation-heading"
+            class="text-balance font-serif text-3xl leading-tight sm:text-4xl lg:text-5xl"
+          >
+            Have a question about your legal matter?
+          </h2>
+
+          <p class="mt-6 text-base leading-relaxed text-white/80 sm:text-lg">
+            Contact Pahblo’s Attorneys in Phuthaditjhaba, QwaQwa,
+            to enquire about a consultation.
+          </p>
+        </div>
+
+        <a
+          href="/contact#consultation"
+          class="group inline-flex min-h-12 shrink-0 items-center justify-center gap-2 self-start rounded-sm bg-[#D4AF67] px-8 py-4 text-sm font-semibold text-navy shadow-md transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-[#E8CA90] hover:shadow-xl hover:shadow-[#D4AF67]/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-navy motion-reduce:transform-none lg:self-auto"
+        >
+          Book a Consultation
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-x-1">
+            <path d="M5 12h14m-6-6 6 6-6 6"></path>
+          </svg>
+        </a>
+      </div>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  /* Hides the default browser arrow on details/summary elements */
+  summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
+
+<script>
+  // Intersection Observer to handle the reveal-on-scroll animations
+  document.addEventListener("DOMContentLoaded", () => {
+    const revealOptions = {
+      root: null,
+      rootMargin: "0px 0px -50px 0px",
+      threshold: 0.1,
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove("opacity-0", "translate-y-8");
+          entry.target.classList.add("opacity-100", "translate-y-0");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, revealOptions);
+
+    const elementsToReveal = document.querySelectorAll(".reveal-on-scroll");
+    elementsToReveal.forEach((el) => revealObserver.observe(el));
+  });
+</script>
