@@ -1,0 +1,697 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout 
+  title="About the Firm | Pahblo's Attorneys" 
+  description="Learn about Pahblo's Attorneys in Phuthaditjhaba, QwaQwa. We provide legal guidance rooted in understanding and clear communication."
+>
+
+  <!-- 1. THE DARK HERO SECTION -->
+  <section
+    aria-labelledby="about-heading"
+    class="relative isolate overflow-hidden bg-navy pb-12 pt-24 sm:pb-16 sm:pt-28 lg:pb-16 lg:pt-32"
+  >
+    <!-- Subtle golden background glow for depth -->
+    <div class="absolute right-0 top-0 -z-10 h-[600px] w-[600px] -translate-y-1/4 translate-x-1/3 rounded-full bg-[#D4AF67]/10 blur-[120px]"></div>
+
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        
+        <!-- Introduction (Loads instantly) -->
+        <div>
+          <div class="mb-5 flex items-center gap-3">
+            <span aria-hidden="true" class="h-px w-10 shrink-0 bg-[#D4AF67]"></span>
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#E8CA90]">
+              Based in Phuthaditjhaba, QwaQwa
+            </p>
+          </div>
+
+          <h1 id="about-heading" class="text-balance font-serif text-4xl leading-tight text-white sm:text-5xl lg:text-6xl">
+            About Pahblo’s Attorneys
+          </h1>
+
+          <p class="mt-6 font-serif text-xl leading-relaxed text-[#D4AF67] sm:text-2xl">
+            Legal guidance rooted in understanding.
+          </p>
+
+          <p class="mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
+            We welcome individuals, families and businesses seeking legal
+            advice and representation. From our base in Phuthaditjhaba,
+            QwaQwa, we take time to understand your circumstances, explain
+            your options and help you consider your next steps.
+          </p>
+
+          <a href="/contact#consultation" class="group mt-10 inline-flex min-h-12 items-center justify-center gap-2 rounded-sm bg-[#D4AF67] px-8 py-3 text-sm font-semibold text-navy shadow-md transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-[#E8CA90] hover:shadow-xl hover:shadow-[#D4AF67]/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-navy motion-reduce:transform-none">
+            Book a Consultation
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-x-1">
+              <path d="M5 12h14m-6-6 6 6-6 6"></path>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Premium Office Photograph (Loads instantly) -->
+        <div class="about-image-wrapper group relative mx-auto w-full max-w-md lg:mx-0 lg:max-w-none">
+          <div aria-hidden="true" class="absolute -bottom-4 -right-4 h-full w-full rounded-2xl border border-[#D4AF67]/40 bg-[#D4AF67]/20 transition-transform duration-700 ease-out group-hover:translate-x-2 group-hover:translate-y-2 max-sm:group-data-[active=true]:translate-x-2 max-sm:group-data-[active=true]:translate-y-2 sm:-bottom-6 sm:-right-6"></div>
+          <div class="relative z-10 overflow-hidden rounded-2xl shadow-2xl shadow-black/50 ring-1 ring-white/10">
+            <img src="/images/about-firm.webp" alt="The office of Pahblo’s Attorneys" width="960" height="800" loading="eager" fetchpriority="high" decoding="async" class="relative aspect-[6/5] w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105 max-sm:group-data-[active=true]:scale-105" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. THE "OUR FIRM" SECTION -->
+  <section
+    aria-labelledby="our-firm-heading"
+    class="relative isolate overflow-hidden bg-stone-50 py-12 sm:py-16 lg:py-20"
+  >
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid items-start gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
+        
+        <!-- Section heading (Sticky on desktop) -->
+        <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 ease-out lg:sticky lg:top-32">
+          <div class="mb-5 flex items-center gap-3">
+            <span aria-hidden="true" class="h-px w-10 shrink-0 bg-[#D4AF67]"></span>
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-navy">
+              Our Firm
+            </p>
+          </div>
+
+          <h2 id="our-firm-heading" class="max-w-md text-balance font-serif text-3xl leading-tight text-navy sm:text-4xl lg:text-5xl">
+            Legal support for our community.
+          </h2>
+
+          <p class="mt-6 max-w-md text-base leading-relaxed text-slate sm:text-lg">
+            Based in Phuthaditjhaba, QwaQwa. Here to help you understand
+            your options and take your next step.
+          </p>
+        </div>
+
+        <!-- Firm overview -->
+        <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 200ms;">
+          <div class="space-y-8 text-base leading-relaxed text-slate sm:text-lg">
+            <p class="text-xl leading-relaxed text-navy sm:text-2xl">
+                Pahblo’s Attorneys welcomes anyone seeking legal advice and
+                representation, including individuals, families and businesses.
+                We assist with matters ranging from personal and property concerns
+                to workplace disputes and litigation.
+            </p>
+            <div class="space-y-6 pt-2">
+              <p>
+                Every matter begins with understanding your circumstances.
+                We listen to your concerns, consider the relevant information
+                and explain your legal options in plain language, giving you
+                space to ask questions.
+              </p>
+              <p>
+                When working with us, you can expect professional attention
+                and clear communication. We discuss the proposed scope of work,
+                fees and next steps, and keep you informed as your matter
+                progresses.
+              </p>
+            </div>
+          </div>
+
+          <a href="/practice-areas" class="group mt-12 inline-flex min-h-12 items-center justify-center gap-2 rounded-sm border border-navy/20 bg-white px-8 py-3 text-sm font-semibold text-navy shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-navy hover:bg-navy hover:text-white hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-4 focus-visible:ring-offset-stone-50 motion-reduce:transform-none">
+            Explore Our Practice Areas
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-x-1">
+              <path d="M5 12h14m-6-6 6 6-6 6"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. OUR STORY SECTION -->
+  <section
+    aria-labelledby="our-story-heading"
+    class="relative isolate overflow-hidden bg-white py-12 sm:py-16 lg:py-20"
+  >
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid items-start gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
+        
+        <!-- Heading and service highlight (Sticky on desktop) -->
+        <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 ease-out lg:sticky lg:top-32">
+          <div class="mb-5 flex items-center gap-3">
+            <span aria-hidden="true" class="h-px w-10 shrink-0 bg-[#D4AF67]"></span>
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-navy">
+              Our Story
+            </p>
+          </div>
+
+          <h2 id="our-story-heading" class="text-balance font-serif text-3xl leading-tight text-navy sm:text-4xl lg:text-5xl">
+            Our story.
+            <span class="block text-[#D4AF67]">Our purpose.</span>
+          </h2>
+
+          <!-- Premium Stat Card -->
+          <div class="group relative mt-10 overflow-hidden rounded-2xl bg-navy p-8 shadow-xl shadow-navy/5 sm:p-10">
+            <div class="absolute -right-10 -top-10 z-0 h-40 w-40 rounded-full bg-[#D4AF67]/20 blur-3xl transition-transform duration-700 ease-out group-hover:scale-150"></div>
+            
+            <div class="relative z-10">
+              <p class="font-serif text-6xl leading-none text-[#E8CA90] sm:text-7xl">
+                7
+              </p>
+              <p class="mt-5 text-lg font-semibold tracking-wide text-white">
+                Years of Service
+              </p>
+              <p class="mt-3 text-sm leading-relaxed text-white/80">
+                Serving individuals, families and businesses from
+                Phuthaditjhaba, QwaQwa.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Founder’s story -->
+        <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 ease-out" style="transition-delay: 200ms;">
+          <div class="space-y-6 text-base leading-relaxed text-slate sm:text-lg">
+            <p>
+              Pahblo’s Attorneys began with a connection to home and a desire
+              to serve its people. Founder
+              <strong class="font-semibold text-navy">Lipopo Paballo</strong>
+              grew up in QwaQwa before pursuing a Bachelor of Laws (LLB) at
+              the University of the Witwatersrand. His roots shaped a vision
+              for a firm where people could seek legal assistance, ask
+              questions freely and understand their options.
+            </p>
+
+            <p>
+              That vision placed Phuthaditjhaba at the heart of the firm.
+              Pahblo’s Attorneys was established to assist individuals,
+              families and businesses with matters affecting their lives
+              and livelihoods—from family concerns and property transactions
+              to workplace disputes and business challenges.
+            </p>
+
+            <p>
+              For seven years, we have served clients with an approach centred
+              on listening carefully, explaining clearly and treating each
+              matter with the attention it deserves. Our purpose remains to
+              make the first conversation less daunting and help clients
+              understand their next steps.
+            </p>
+
+            <!-- Editorial Blockquote -->
+            <div class="mt-10 border-l-2 border-[#D4AF67] pl-6 pt-2">
+              <p class="font-serif text-xl italic leading-relaxed text-navy sm:text-2xl">
+                "Rooted in QwaQwa. Guided by a commitment to the people we serve."
+              </p>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. BUSINESS CLIENTS (INFINITE SCROLL) -->
+  <section
+    aria-labelledby="business-clients-heading"
+    class="bg-stone-50 py-16 sm:py-20 lg:py-24 overflow-hidden"
+  >
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <!-- Section introduction -->
+      <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 ease-out mx-auto max-w-2xl text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-navy">
+          Businesses We’ve Worked With
+        </p>
+
+        <span aria-hidden="true" class="mx-auto mt-4 block h-px w-12 bg-[#D4AF67]"></span>
+
+        <h2 id="business-clients-heading" class="mt-5 text-balance font-serif text-3xl leading-tight text-navy sm:text-4xl lg:text-5xl">
+          Supporting businesses through legal challenges.
+        </h2>
+
+        <p class="mt-5 text-base leading-relaxed text-slate sm:text-lg">
+          We have assisted businesses with their legal matters through
+          clear communication and careful attention to their circumstances.
+        </p>
+      </div>
+    </div>
+
+    <!-- Infinite Scroll Track (Using Tailwind Arbitrary Utilities for the Faded Mask) -->
+    <div class="relative mt-16 w-full overflow-hidden py-10 [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
+      <ul
+        id="logo-track"
+        aria-label="Business clients"
+        class="flex w-max flex-nowrap items-center gap-6 px-4 sm:gap-8"
+      >
+        {
+          [
+            // Duplicated Array for the loop
+            { name: "Business One", logo: "/images/clients/business-one.webp" },
+            { name: "Business Two", logo: "/images/clients/business-two.webp" },
+            { name: "Business Three", logo: "/images/clients/business-three.webp" },
+            { name: "Business Four", logo: "/images/clients/business-four.webp" },
+            { name: "Business Five", logo: "/images/clients/business-five.webp" },
+            { name: "Business Six", logo: "/images/clients/business-six.webp" },
+            { name: "Business One", logo: "/images/clients/business-one.webp" },
+            { name: "Business Two", logo: "/images/clients/business-two.webp" },
+            { name: "Business Three", logo: "/images/clients/business-three.webp" },
+            { name: "Business Four", logo: "/images/clients/business-four.webp" },
+            { name: "Business Five", logo: "/images/clients/business-five.webp" },
+            { name: "Business Six", logo: "/images/clients/business-six.webp" },
+          ].map(({ name, logo }) => (
+            <li class="client-logo flex h-32 w-48 shrink-0 items-center justify-center rounded-2xl border border-stone-200 bg-white p-6 opacity-50 grayscale transition-all duration-700 ease-out data-[active=true]:scale-110 data-[active=true]:border-[#D4AF67]/50 data-[active=true]:opacity-100 data-[active=true]:shadow-xl data-[active=true]:shadow-navy/10 data-[active=true]:grayscale-0">
+              <img
+                src={logo}
+                alt={name}
+                width="180"
+                height="90"
+                loading="lazy"
+                decoding="async"
+                class="h-16 w-full object-contain"
+              />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. OUR APPROACH SECTION -->
+  <section
+    aria-labelledby="our-approach-heading"
+    class="relative isolate overflow-hidden bg-white py-12 sm:py-16 lg:py-20"
+  >
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section introduction -->
+      <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 ease-out max-w-2xl">
+        <div class="mb-5 flex items-center gap-3">
+          <span aria-hidden="true" class="h-px w-10 shrink-0 bg-[#D4AF67]"></span>
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-navy">
+            Our Approach
+          </p>
+        </div>
+
+        <h2 id="our-approach-heading" class="text-balance font-serif text-3xl leading-tight text-navy sm:text-4xl lg:text-5xl">
+          A clear approach to your legal matter.
+        </h2>
+
+        <p class="mt-5 text-base leading-relaxed text-slate sm:text-lg">
+          We begin by understanding your circumstances, then help you
+          consider your options and stay informed throughout the work
+          we undertake.
+        </p>
+      </div>
+
+      <!-- Working process cards -->
+      <ol class="mt-16 grid gap-6 lg:grid-cols-3 lg:gap-8">
+        
+        <!-- Step 01 -->
+        <li 
+          class="reveal-on-scroll mobile-interactive group relative overflow-hidden rounded-2xl border border-stone-100 bg-stone-50/50 p-8 shadow-sm opacity-0 translate-y-8 transition-all duration-500 ease-out hover:-translate-y-2 hover:bg-white hover:shadow-xl hover:shadow-navy/5 max-sm:data-[active=true]:-translate-y-2 max-sm:data-[active=true]:bg-white max-sm:data-[active=true]:shadow-xl max-sm:data-[active=true]:shadow-navy/5"
+          style="transition-delay: 100ms;"
+        >
+          <!-- Animated Top Border -->
+          <div class="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-[#D4AF67] transition-transform duration-500 ease-out group-hover:scale-x-100 max-sm:group-data-[active=true]:scale-x-100"></div>
+          
+          <!-- Large Faint Watermark -->
+          <span aria-hidden="true" class="absolute -right-4 -top-8 select-none font-serif text-[10rem] font-bold leading-none text-stone-100/70 transition-colors duration-500 group-hover:text-stone-100 max-sm:group-data-[active=true]:text-stone-100">
+            1
+          </span>
+
+          <div class="relative z-10">
+            <span class="font-serif text-2xl font-bold text-[#D4AF67]">01.</span>
+            <h3 class="mt-4 font-serif text-2xl font-semibold text-navy">
+              Understand Your Matter
+            </h3>
+            <p class="mt-4 text-base leading-relaxed text-slate">
+              We listen to your concerns, review the relevant information
+              and ask questions to understand your circumstances, priorities
+              and any important deadlines.
+            </p>
+          </div>
+        </li>
+
+        <!-- Step 02 -->
+        <li 
+          class="reveal-on-scroll mobile-interactive group relative overflow-hidden rounded-2xl border border-stone-100 bg-stone-50/50 p-8 shadow-sm opacity-0 translate-y-8 transition-all duration-500 ease-out hover:-translate-y-2 hover:bg-white hover:shadow-xl hover:shadow-navy/5 max-sm:data-[active=true]:-translate-y-2 max-sm:data-[active=true]:bg-white max-sm:data-[active=true]:shadow-xl max-sm:data-[active=true]:shadow-navy/5"
+          style="transition-delay: 300ms;"
+        >
+          <!-- Animated Top Border -->
+          <div class="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-[#D4AF67] transition-transform duration-500 ease-out group-hover:scale-x-100 max-sm:group-data-[active=true]:scale-x-100"></div>
+          
+          <!-- Large Faint Watermark -->
+          <span aria-hidden="true" class="absolute -right-4 -top-8 select-none font-serif text-[10rem] font-bold leading-none text-stone-100/70 transition-colors duration-500 group-hover:text-stone-100 max-sm:group-data-[active=true]:text-stone-100">
+            2
+          </span>
+
+          <div class="relative z-10">
+            <span class="font-serif text-2xl font-bold text-[#D4AF67]">02.</span>
+            <h3 class="mt-4 font-serif text-2xl font-semibold text-navy">
+              Explain Your Options
+            </h3>
+            <p class="mt-4 text-base leading-relaxed text-slate">
+              We explain the available approaches in plain language,
+              including relevant considerations, the proposed scope of work
+              and fees, so you can make an informed decision.
+            </p>
+          </div>
+        </li>
+
+        <!-- Step 03 -->
+        <li 
+          class="reveal-on-scroll mobile-interactive group relative overflow-hidden rounded-2xl border border-stone-100 bg-stone-50/50 p-8 shadow-sm opacity-0 translate-y-8 transition-all duration-500 ease-out hover:-translate-y-2 hover:bg-white hover:shadow-xl hover:shadow-navy/5 max-sm:data-[active=true]:-translate-y-2 max-sm:data-[active=true]:bg-white max-sm:data-[active=true]:shadow-xl max-sm:data-[active=true]:shadow-navy/5"
+          style="transition-delay: 500ms;"
+        >
+          <!-- Animated Top Border -->
+          <div class="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-[#D4AF67] transition-transform duration-500 ease-out group-hover:scale-x-100 max-sm:group-data-[active=true]:scale-x-100"></div>
+          
+          <!-- Large Faint Watermark -->
+          <span aria-hidden="true" class="absolute -right-4 -top-8 select-none font-serif text-[10rem] font-bold leading-none text-stone-100/70 transition-colors duration-500 group-hover:text-stone-100 max-sm:group-data-[active=true]:text-stone-100">
+            3
+          </span>
+
+          <div class="relative z-10">
+            <span class="font-serif text-2xl font-bold text-[#D4AF67]">03.</span>
+            <h3 class="mt-4 font-serif text-2xl font-semibold text-navy">
+              Keep You Informed
+            </h3>
+            <p class="mt-4 text-base leading-relaxed text-slate">
+              Once appointed, we communicate progress, explain developments
+              and discuss any changes that affect the agreed approach.
+              You have space to ask questions about what comes next.
+            </p>
+          </div>
+        </li>
+
+      </ol>
+    </div>
+  </section>
+
+  <!-- 6. OUR VALUES SECTION -->
+  <section
+    aria-labelledby="our-values-heading"
+    class="relative isolate overflow-hidden bg-stone-50 py-12 sm:py-16 lg:py-20"
+  >
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      
+      <!-- Introduction -->
+      <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 ease-out mx-auto max-w-2xl text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-navy">
+          Our Values
+        </p>
+        <span aria-hidden="true" class="mx-auto mt-4 block h-px w-12 bg-[#D4AF67]"></span>
+        <h2 id="our-values-heading" class="mt-6 text-balance font-serif text-3xl leading-tight text-navy sm:text-4xl lg:text-5xl">
+          The principles behind our work.
+        </h2>
+        <p class="mt-6 text-base leading-relaxed text-slate sm:text-lg">
+          Our values guide how we treat people, consider their concerns
+          and carry out the work entrusted to us.
+        </p>
+      </div>
+
+      <!-- Values Grid -->
+      <ul class="mt-16 grid gap-6 sm:grid-cols-2 lg:gap-8">
+        {
+          [
+            {
+              title: "Integrity",
+              description:
+                "We value honest advice and responsible conduct. We discuss your matter openly, including its challenges, without promising outcomes we cannot guarantee.",
+            },
+            {
+              title: "Respect",
+              description:
+                "We treat every person with dignity. Your background and circumstances deserve understanding, and your concerns deserve to be heard.",
+            },
+            {
+              title: "Care",
+              description:
+                "We recognise that legal matters affect lives, families and livelihoods. We give careful attention to the information and responsibilities entrusted to us.",
+            },
+            {
+              title: "Community",
+              description:
+                "Our roots in QwaQwa shape our commitment to helping people access legal guidance and better understand the matters affecting their lives.",
+            },
+          ].map(({ title, description }, index) => {
+            const delay = index * 150;
+            return (
+              <li 
+                class="reveal-on-scroll mobile-interactive group relative overflow-hidden rounded-2xl border border-stone-100 bg-white p-8 shadow-sm opacity-0 translate-y-8 transition-all duration-500 ease-out hover:-translate-y-2 hover:border-[#D4AF67]/30 hover:shadow-xl hover:shadow-navy/5 max-sm:data-[active=true]:-translate-y-2 max-sm:data-[active=true]:border-[#D4AF67]/30 max-sm:data-[active=true]:shadow-xl max-sm:data-[active=true]:shadow-navy/5"
+                style={`transition-delay: ${delay}ms;`}
+              >
+                <!-- Interactive expanding gold dash -->
+                <span
+                  aria-hidden="true"
+                  class="mb-6 block h-1 w-8 rounded-full bg-[#D4AF67] transition-all duration-500 ease-out group-hover:w-16 max-sm:group-data-[active=true]:w-16"
+                ></span>
+
+                <h3 class="font-serif text-2xl font-semibold text-navy">
+                  {title}
+                </h3>
+
+                <p class="mt-4 text-base leading-relaxed text-slate">
+                  {description}
+                </p>
+              </li>
+            );
+          })
+        }
+      </ul>
+      
+    </div>
+  </section>
+  <!-- 7. VISIT OUR OFFICE SECTION -->
+  <section
+    aria-labelledby="visit-office-heading"
+    class="relative isolate overflow-hidden bg-white py-12 sm:py-16 lg:py-20"
+  >
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        
+        <!-- Office introduction -->
+        <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 ease-out">
+          <div class="mb-5 flex items-center gap-3">
+            <span aria-hidden="true" class="h-px w-10 shrink-0 bg-[#D4AF67]"></span>
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-navy">
+              Visit Our Office
+            </p>
+          </div>
+
+          <h2
+            id="visit-office-heading"
+            class="text-balance font-serif text-3xl leading-tight text-navy sm:text-4xl lg:text-5xl"
+          >
+            Based in Phuthaditjhaba.
+            <span class="block text-[#D4AF67]">Here to assist.</span>
+          </h2>
+
+          <p class="mt-6 max-w-xl text-base leading-relaxed text-slate sm:text-lg">
+            Our firm is based in Phuthaditjhaba, QwaQwa. Contact us to
+            arrange a consultation and confirm your visit.
+          </p>
+
+          <p class="mt-4 max-w-xl text-base leading-relaxed text-slate">
+            Before travelling, please confirm your appointment, our office
+            hours and the documents relevant to your matter. Let us know
+            if you have any accessibility requirements.
+          </p>
+
+          <a
+            href="/contact"
+            class="group mt-10 inline-flex min-h-12 items-center justify-center gap-2 rounded-sm bg-navy px-8 py-3 text-sm font-semibold text-white shadow-md transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-navy/90 hover:shadow-xl hover:shadow-navy/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-4 focus-visible:ring-offset-white motion-reduce:transform-none"
+          >
+            Find Our Office
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-x-1">
+              <path d="M5 12h14m-6-6 6 6-6 6"></path>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Decorative office image (Premium Interactive) -->
+        <div 
+          class="reveal-on-scroll mobile-interactive group relative mx-auto w-full max-w-md opacity-0 translate-y-8 transition-all duration-1000 ease-out lg:mx-0 lg:max-w-none" 
+          style="transition-delay: 200ms;"
+        >
+          <!-- Interactive Filled Background Frame -->
+          <div
+            aria-hidden="true"
+            class="absolute -bottom-4 -right-4 h-full w-full rounded-2xl border border-[#D4AF67]/30 bg-[#D4AF67]/15 transition-transform duration-700 ease-out group-hover:translate-x-2 group-hover:translate-y-2 max-sm:group-data-[active=true]:translate-x-2 max-sm:group-data-[active=true]:translate-y-2 sm:-bottom-6 sm:-right-6"
+          ></div>
+
+          <!-- Image Container with Zoom -->
+          <div class="relative z-10 overflow-hidden rounded-2xl shadow-2xl shadow-navy/10">
+            <img
+              src="/images/hero.webp"
+              alt=""
+              width="1200"
+              height="800"
+              loading="lazy"
+              decoding="async"
+              class="relative aspect-[3/2] w-full object-cover object-[65%_center] transition-transform duration-700 ease-out group-hover:scale-105 max-sm:group-data-[active=true]:scale-105"
+            />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. FINAL CTA SECTION -->
+  <section
+    aria-labelledby="about-consultation-heading"
+    class="relative isolate overflow-hidden bg-navy py-12 text-white sm:py-16 lg:py-20"
+  >
+    <!-- Subtle golden background glow for depth -->
+    <div class="absolute right-0 top-1/2 -z-10 h-[400px] w-[400px] -translate-y-1/2 translate-x-1/4 rounded-full bg-[#D4AF67]/15 blur-[100px]"></div>
+
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div
+        class="reveal-on-scroll flex flex-col gap-8 opacity-0 translate-y-8 transition-all duration-1000 ease-out lg:flex-row lg:items-center lg:justify-between lg:gap-16"
+      >
+        <div class="max-w-2xl">
+          <div class="mb-5 flex items-center gap-3">
+            <span
+              aria-hidden="true"
+              class="h-px w-10 shrink-0 bg-[#D4AF67]"
+            ></span>
+
+            <p
+              class="text-xs font-semibold uppercase tracking-[0.2em] text-[#E8CA90]"
+            >
+              Take the Next Step
+            </p>
+          </div>
+
+          <h2
+            id="about-consultation-heading"
+            class="text-balance font-serif text-3xl leading-tight sm:text-4xl lg:text-5xl"
+          >
+            Let’s discuss your legal matter.
+          </h2>
+
+          <p class="mt-6 text-base leading-relaxed text-white/80 sm:text-lg">
+            Contact Pahblo’s Attorneys to arrange a consultation and
+            explore your next steps with confidence and clarity.
+          </p>
+        </div>
+
+        <a
+          href="/contact#consultation"
+          class="group inline-flex min-h-12 shrink-0 items-center justify-center gap-2 self-start rounded-sm bg-[#D4AF67] px-8 py-4 text-sm font-semibold text-navy shadow-md transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-[#E8CA90] hover:shadow-xl hover:shadow-[#D4AF67]/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-navy motion-reduce:transform-none lg:self-auto"
+        >
+          Book a Consultation
+
+          <svg
+            aria-hidden="true"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="transition-transform duration-300 group-hover:translate-x-1"
+          >
+            <path d="M5 12h14m-6-6 6 6-6 6"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // 1. Reveal on scroll animation for vertical flow
+    const revealOptions = {
+      root: null,
+      rootMargin: "0px 0px -50px 0px",
+      threshold: 0.1,
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove("opacity-0", "translate-y-8");
+          entry.target.classList.add("opacity-100", "translate-y-0");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, revealOptions);
+
+    const cards = document.querySelectorAll(".reveal-on-scroll");
+    cards.forEach((card, index) => {
+      if (!(card as HTMLElement).style.transitionDelay) {
+        const delay = (index % 3) * 150; 
+        (card as HTMLElement).style.transitionDelay = `${delay}ms`;
+      }
+      revealObserver.observe(card);
+    });
+
+    // 2. Horizontal Center Focus for the Logo Track
+    const horizontalFocusOptions = {
+      root: null,
+      rootMargin: "0px -40% 0px -40%", // Narrows horizontal window
+      threshold: 0,
+    };
+
+    const horizontalObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.setAttribute("data-active", "true");
+        } else {
+          entry.target.removeAttribute("data-active");
+        }
+      });
+    }, horizontalFocusOptions);
+
+    const logoCards = document.querySelectorAll(".client-logo");
+    logoCards.forEach((card) => horizontalObserver.observe(card));
+
+
+    // 3. Vertical Center Focus for Mobile Interactive Cards (The Fix)
+    const verticalFocusOptions = {
+      root: null,
+      rootMargin: "-40% 0px -40% 0px", // Narrows vertical window to the middle 20% of the screen
+      threshold: 0,
+    };
+
+    const verticalObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.setAttribute("data-active", "true");
+        } else {
+          entry.target.removeAttribute("data-active");
+        }
+      });
+    }, verticalFocusOptions);
+
+    const interactiveCards = document.querySelectorAll(".mobile-interactive");
+    interactiveCards.forEach((card) => verticalObserver.observe(card));
+
+
+    // 4. Infinite Auto-Scroll Logic for Logos
+    const track = document.getElementById("logo-track");
+    if (track) {
+      let scrollPos = 0;
+      let isPaused = false;
+
+      // Pause on hover
+      track.addEventListener("mouseenter", () => (isPaused = true));
+      track.addEventListener("mouseleave", () => (isPaused = false));
+
+      const animateScroll = () => {
+        if (!isPaused) {
+          scrollPos += 0.75; // Adjust speed here
+          if (scrollPos >= track.scrollWidth / 2) {
+            scrollPos = 0;
+          }
+          track.style.transform = `translateX(-${scrollPos}px)`;
+        }
+        requestAnimationFrame(animateScroll);
+      };
+      
+      requestAnimationFrame(animateScroll);
+    }
+  });
+</script>

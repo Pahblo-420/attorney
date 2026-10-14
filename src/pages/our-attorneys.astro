@@ -1,0 +1,434 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout 
+  title="Our Attorneys | Pahblo’s Attorneys"
+  description="Meet the dedicated attorneys at Pahblo’s Attorneys, providing trusted legal support in Phuthaditjhaba, QwaQwa."
+>
+  <!-- HERO SECTION -->
+  <section
+    aria-labelledby="attorneys-heading"
+    class="relative isolate overflow-hidden bg-navy text-white"
+  >
+    <!-- Hero background Image -->
+    <img
+      src="/images/attorneys.webp"
+      alt=""
+      aria-hidden="true"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+      class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+    />
+
+    <!-- Contrast overlay via CSS class -->
+    <div
+      aria-hidden="true"
+      class="attorneys-overlay absolute inset-0 -z-10"
+    ></div>
+
+    <div
+      class="mx-auto flex min-h-[32rem] max-w-7xl flex-col justify-center px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-28 lg:min-h-[38rem] lg:px-8 lg:pt-32"
+    >
+      <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 ease-out">
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="mb-8">
+          <ol class="flex items-center gap-3 text-sm text-white/60">
+            <li>
+              <a
+                href="/"
+                class="rounded-sm underline-offset-4 transition-colors hover:text-[#D4AF67] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF67] focus-visible:ring-offset-4 focus-visible:ring-offset-navy"
+              >
+                Home
+              </a>
+            </li>
+
+            <li aria-hidden="true" class="text-white/40">/</li>
+
+            <li>
+              <span aria-current="page" class="font-semibold text-white">
+                Our Attorneys
+              </span>
+            </li>
+          </ol>
+        </nav>
+
+        <div class="max-w-2xl">
+          <div class="mb-5 flex items-center gap-3">
+            <span
+              aria-hidden="true"
+              class="h-px w-10 shrink-0 bg-[#D4AF67]"
+            ></span>
+
+            <p
+              class="text-xs font-semibold uppercase tracking-[0.2em] text-[#E8CA90]"
+            >
+              The People Behind the Firm
+            </p>
+          </div>
+
+          <h1
+            id="attorneys-heading"
+            class="text-balance font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl"
+          >
+            Our Attorneys
+          </h1>
+
+          <p
+            class="mt-6 font-serif text-xl leading-relaxed text-[#D4AF67] sm:text-2xl"
+          >
+            Meet the people behind your legal support.
+          </p>
+
+          <p
+            class="mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg"
+          >
+            Get to know the attorneys at Pahblo’s Attorneys, serving
+            individuals, families and businesses from Phuthaditjhaba,
+            QwaQwa.
+          </p>
+
+          <a
+            href="/contact#consultation"
+            class="group mt-10 inline-flex min-h-12 items-center justify-center gap-2 rounded-sm bg-[#D4AF67] px-8 py-3 text-sm font-semibold text-navy shadow-md transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-[#E8CA90] hover:shadow-xl hover:shadow-[#D4AF67]/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-navy motion-reduce:transform-none"
+          >
+            Book a Consultation
+
+            <!-- Premium SVG arrow replacing the text arrow -->
+            <svg
+              aria-hidden="true"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="transition-transform duration-300 group-hover:translate-x-1"
+            >
+              <path d="M5 12h14m-6-6 6 6-6 6"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Detailed attorney profiles" class="overflow-hidden">
+  {
+    [
+      {
+        id: "attorney-one",
+        name: "Lipopo Paballo",
+        role: "Director & Attorney",
+        qualification: "LLB · University of the Witwatersrand",
+        areas: [
+          "Civil Litigation",
+          "Commercial Agreements",
+          "Family Law",
+          "Property Law"
+        ],
+        biography: [
+          "Lipopo Paballo is the founder of Pahblo’s Attorneys. Born and raised in QwaQwa, he established the firm with a clear vision: to strip away the intimidation factor often associated with the legal profession and provide accessible, top-tier legal support directly from Phuthaditjhaba.",
+          "His practice focuses heavily on assisting local businesses with complex commercial structuring, and guiding individuals through civil disputes and delicate family matters.",
+          "Before establishing the firm, Lipopo honed his analytical approach at top-tier legal clinics and corporate advisory boards. He believes that the most effective legal strategies are built on a foundation of mutual trust, plain-language communication, and meticulous preparation."
+        ],
+        languages: "English, Sesotho, isiZulu",
+        email: "lipopo@pahblosattorneys.co.za",
+        phone: "+27 58 713 0001",
+        image: "/images/attorney-1.webp",
+      },
+      {
+        id: "attorney-two",
+        name: "Thandiwe Nkosi",
+        role: "Senior Associate",
+        qualification: "LLB · University of Pretoria",
+        areas: [
+          "Criminal Litigation",
+          "Divorce Proceedings",
+          "Bail Applications",
+          "Labour Disputes"
+        ],
+        biography: [
+          "Thandiwe Nkosi is a formidable litigator who assists clients through some of their most high-stakes personal challenges, including contested divorce proceedings, complex criminal matters, and urgent bail applications.",
+          "With over a decade of courtroom experience across the Free State and Gauteng, she has built a reputation for fierce advocacy balanced with profound empathy for her clients.",
+          "Thandiwe approaches every case with a tactical mindset, ensuring her clients are fully prepared for every stage of litigation while fiercely protecting their rights and dignity."
+        ],
+        languages: "English, isiXhosa, Sesotho, Afrikaans",
+        email: "thandiwe@pahblosattorneys.co.za",
+        phone: "+27 58 713 0002",
+        image: "/images/attorney-2.webp",
+      },
+      {
+        id: "attorney-three",
+        name: "Tshepo Mokoena",
+        role: "Attorney & Conveyancer",
+        qualification: "LLB · University of South Africa",
+        areas: [
+          "Property Law",
+          "Deceased Estates",
+          "Wills & Trusts",
+          "Conveyancing"
+        ],
+        biography: [
+          "Tshepo Mokoena specializes in safeguarding the legacies and assets of our clients through meticulous property law management, deceased estate administration, and the drafting of watertight wills and trusts.",
+          "His background in financial compliance and real estate transfers ensures that clients navigating the often-complex South African deeds registry do so with minimal delays and total transparency.",
+          "Tshepo is known for his patient, methodical approach. He takes the time to sit down with families, explaining every step of the estate administration process so they can find closure with peace of mind."
+        ],
+        languages: "English, Setswana, Sesotho",
+        email: "tshepo@pahblosattorneys.co.za",
+        phone: "+27 58 713 0003",
+        image: "/images/attorney-3.webp",
+      },
+    ].map((attorney, index) => (
+      <article
+        id={attorney.id}
+        aria-labelledby={`${attorney.id}-heading`}
+        class:list={[
+          "scroll-mt-28 py-12 sm:py-16 lg:py-20",
+          index % 2 === 0 ? "bg-white" : "bg-stone-50",
+        ]}
+      >
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="grid items-start gap-12 lg:grid-cols-2 lg:gap-20">
+            
+            <!-- Portrait and contact card (Alternates Left/Right) -->
+            <div class:list={[
+              "reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 ease-out", 
+              index % 2 !== 0 && "lg:order-last"
+            ]}>
+              <!-- Premium Image Frame -->
+              <div class="group relative mx-auto w-full max-w-md lg:mx-0 lg:max-w-none">
+                <div aria-hidden="true" class="absolute -bottom-4 -right-4 h-full w-full rounded-2xl border border-[#D4AF67]/40 bg-[#D4AF67]/10 transition-transform duration-700 ease-out group-hover:translate-x-2 group-hover:translate-y-2 sm:-bottom-6 sm:-right-6"></div>
+                <div class="relative z-10 overflow-hidden rounded-2xl shadow-2xl shadow-navy/10 ring-1 ring-stone-200">
+                  <img
+                    src={attorney.image}
+                    alt={`Portrait of ${attorney.name}`}
+                    width="640"
+                    height="800"
+                    loading="lazy"
+                    decoding="async"
+                    class="aspect-[4/5] w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                </div>
+              </div>
+
+              <!-- Elevated Contact Card (Fixed with items-start) -->
+              <div class="relative z-20 mx-auto -mt-12 flex max-w-[90%] flex-col items-start rounded-2xl border border-stone-100 bg-white p-6 shadow-xl shadow-navy/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-navy/10 sm:p-8 lg:-mt-16 lg:ml-8 lg:max-w-[85%]">
+                <h3 class="font-serif text-xl font-semibold text-navy">
+                  Contact {attorney.name.split(" ")[0]}
+                </h3>
+
+                <address class="mt-5 space-y-4 text-sm leading-relaxed text-slate not-italic w-full">
+                  {attorney.email && (
+                    <p class="flex flex-col gap-1">
+                      <span class="font-semibold text-navy uppercase tracking-wider text-xs">Email</span>
+                      <a
+                        href={`mailto:${attorney.email}`}
+                        class="text-slate transition-colors hover:text-[#D4AF67]"
+                      >
+                        {attorney.email}
+                      </a>
+                    </p>
+                  )}
+
+                  {attorney.phone && (
+                    <p class="flex flex-col gap-1">
+                      <span class="font-semibold text-navy uppercase tracking-wider text-xs">Telephone</span>
+                      <a
+                        href={`tel:${attorney.phone.replace(/[^\d+]/g, "")}`}
+                        class="text-slate transition-colors hover:text-[#D4AF67]"
+                      >
+                        {attorney.phone}
+                      </a>
+                    </p>
+                  )}
+                </address>
+
+                <a
+                  href="/contact#consultation"
+                  class="group mt-8 inline-flex items-center justify-center gap-2 rounded-sm bg-navy px-8 py-3.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-[#D4AF67] hover:shadow-xl hover:shadow-navy/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-4"
+                >
+                  Arrange a Consultation
+                  <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-x-1">
+                    <path d="M5 12h14m-6-6 6 6-6 6"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Detailed biography -->
+            <div 
+              class="reveal-on-scroll flex flex-col justify-center opacity-0 translate-y-8 transition-all duration-1000 ease-out" 
+              style="transition-delay: 200ms;"
+            >
+              <div class="mb-5 flex items-center gap-3">
+                <span aria-hidden="true" class="h-px w-10 shrink-0 bg-[#D4AF67]"></span>
+                <p class="text-xs font-semibold uppercase tracking-[0.2em] text-navy">
+                  {attorney.role}
+                </p>
+              </div>
+
+              <h2
+                id={`${attorney.id}-heading`}
+                class="mt-2 font-serif text-3xl leading-tight text-navy sm:text-4xl lg:text-5xl"
+              >
+                {attorney.name}
+              </h2>
+
+              <p class="mt-4 font-serif text-lg italic text-[#D4AF67] sm:text-xl">
+                {attorney.qualification}
+              </p>
+
+              <!-- Biography Text -->
+              <div class="mt-8 space-y-6 text-base leading-relaxed text-slate sm:text-lg">
+                {attorney.biography.map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))}
+              </div>
+
+              <!-- Practice Focus Pills -->
+              <div class="mt-10 border-t border-stone-200 pt-8">
+                <h3 class="font-serif text-2xl font-semibold text-navy">
+                  Practice Focus
+                </h3>
+                <ul class="mt-6 flex flex-wrap gap-3">
+                  {attorney.areas.map((area) => (
+                    <li class="rounded-full border border-stone-200 bg-white px-5 py-2 text-sm font-medium text-navy shadow-sm transition-colors hover:border-[#D4AF67]/50 hover:bg-stone-50">
+                      {area}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <!-- Languages -->
+              <dl class="mt-8 border-t border-stone-200 pt-8">
+                <div>
+                  <dt class="font-serif text-xl font-semibold text-navy">
+                    Languages Spoken
+                  </dt>
+                  <dd class="mt-3 text-base leading-relaxed text-slate">
+                    {attorney.languages}
+                  </dd>
+                </div>
+              </dl>
+            </div>
+            
+          </div>
+        </div>
+      </article>
+    ))
+  }
+</section>
+
+<!-- FINAL CTA SECTION -->
+  <section
+    aria-labelledby="attorney-consultation-heading"
+    class="relative isolate overflow-hidden bg-navy py-12 text-white sm:py-16 lg:py-20"
+  >
+    <!-- Subtle golden background glow for depth -->
+    <div class="absolute right-0 top-1/2 -z-10 h-[400px] w-[400px] -translate-y-1/2 translate-x-1/4 rounded-full bg-[#D4AF67]/15 blur-[100px]"></div>
+
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div
+        class="reveal-on-scroll flex flex-col gap-8 opacity-0 translate-y-8 transition-all duration-1000 ease-out lg:flex-row lg:items-center lg:justify-between lg:gap-16"
+      >
+        <div class="max-w-2xl">
+          <div class="mb-5 flex items-center gap-3">
+            <span
+              aria-hidden="true"
+              class="h-px w-10 shrink-0 bg-[#D4AF67]"
+            ></span>
+
+            <p
+              class="text-xs font-semibold uppercase tracking-[0.2em] text-[#E8CA90]"
+            >
+              Take the Next Step
+            </p>
+          </div>
+
+          <h2
+            id="attorney-consultation-heading"
+            class="text-balance font-serif text-3xl leading-tight sm:text-4xl lg:text-5xl"
+          >
+            Let’s connect you with the right attorney.
+          </h2>
+
+          <p class="mt-6 text-base leading-relaxed text-white/80 sm:text-lg">
+            Tell us about your legal matter, and we’ll help you arrange
+            a consultation with an attorney whose practice focus fits
+            your needs.
+          </p>
+        </div>
+
+        <a
+          href="/contact#consultation"
+          class="group inline-flex min-h-12 shrink-0 items-center justify-center gap-2 self-start rounded-sm bg-[#D4AF67] px-8 py-4 text-sm font-semibold text-navy shadow-md transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-[#E8CA90] hover:shadow-xl hover:shadow-[#D4AF67]/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-navy motion-reduce:transform-none lg:self-auto"
+        >
+          Book a Consultation
+
+          <!-- Premium SVG arrow replacing the text arrow -->
+          <svg
+            aria-hidden="true"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="transition-transform duration-300 group-hover:translate-x-1"
+          >
+            <path d="M5 12h14m-6-6 6 6-6 6"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Desktop Gradient: Dark enough to hide complex background details behind the text */
+  .attorneys-overlay {
+    background: linear-gradient(
+      90deg,
+      rgb(10 25 47 / 96%) 0%,
+      rgb(10 25 47 / 90%) 35%,
+      rgb(10 25 47 / 70%) 65%,
+      rgb(10 25 47 / 45%) 100%
+    );
+  }
+
+  /* Mobile Background: A solid, deep navy for perfect readability */
+  @media (max-width: 639px) {
+    .attorneys-overlay {
+      background: rgb(10 25 47 / 92%);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const revealOptions = {
+      root: null,
+      rootMargin: "0px 0px -50px 0px",
+      threshold: 0.1,
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove("opacity-0", "translate-y-8");
+          entry.target.classList.add("opacity-100", "translate-y-0");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, revealOptions);
+
+    const cards = document.querySelectorAll(".reveal-on-scroll");
+    cards.forEach((card) => revealObserver.observe(card));
+  });
+</script>
